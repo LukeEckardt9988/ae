@@ -1,0 +1,207 @@
+@media print {
+    @page {
+        margin: 0.8cm 2cm 0.8cm 2cm !important;
+        padding-top: 25px!important;
+
+    }
+
+    body {
+        font-family: sans-serif!important;
+        background-color: white!important;
+        color: black!important;
+        font-size: 10pt!important;
+        box-shadow: none!important;
+    }
+
+    a {
+        display: none!important;
+    }
+
+  .container {
+        width: 100%!important;
+        max-width: none!important;
+        border: none!important;
+        margin: 0 auto!important;
+        padding: 0!important;
+        box-shadow: none!important;
+    }
+
+  .header {
+        display: none!important;
+    }
+
+  .rubrikueberschrift {
+        text-align: center;
+        align-items: center;
+    }
+
+  .Ueberschrift {
+        text-align: center;
+        align-items: center;
+    }
+
+    /* Section-spezifische Anpassungen */
+  .betrifft-section,
+  .grund-aenderung-section,
+  .programm-bestueckung-section,
+  .schablone-bestueckung-section,
+  .pruefung-section,
+  .aenderungsnachweis-section,
+  .zusatzinfos-section,
+  .stuecklistenaenderungen-section {
+
+        border: 1px solid grey!important;
+        border-radius: 3px!important;
+        page-break-inside: avoid!important;
+        margin-bottom: 2px!important;
+        page-break-after: avoid!important;
+
+    }
+
+
+  .stuecklistenaenderungen-section.full-width-textarea {
+        font-size: 9pt!important;
+        min-height: auto!important;
+        min-height: 800px!important;
+        overflow: visible!important;
+        page-break-inside: avoid!important;
+    }
+
+    #stuecklistenaenderungen-textarea{
+        padding: 10px!important;
+    }
+
+    /* Betrifft und Änderungsnachweis Section */
+  .betrifft-section.row,
+  .aenderungsnachweis-section.row {
+        margin-bottom: 0!important;
+    }
+
+    /* Grund-Aenderung Section */
+  .grund-aenderung-section.checkbox-row {
+        display: flex;
+        flex-wrap: nowrap;
+        margin-bottom: 0;
+    }
+
+
+  .grund-aenderung-section.checkbox-pair {
+        width: 33.33%;
+        box-sizing: border-box;
+    }
+
+  .grund-aenderung-section.checkbox-pair label {
+        font-size: 9pt!important;
+    }
+
+    /* Table Sections */
+  .table-section.row {
+        margin-bottom: 0!important;
+    }
+
+  .table-section.col-label {
+        font-size: 9pt!important;
+    }
+
+    /* Col-Content */
+  .col-content {
+        font-size: 9pt!important;
+    }
+
+    /* Überschrift */
+  .rubrikueberschrift {
+        font-size: 11pt!important;
+        margin-bottom: 2px!important;
+    }
+
+    /* Allgemeine Anpassungen */
+  .row {
+        display: flex!important;
+        margin-left: 0!important;
+        margin-right: 0!important;
+        margin-bottom: 2px!important;
+    }
+
+  .col-full,
+  .col-content,
+  .col-label {
+        padding: 2px!important;
+        font-size: 10pt!important;
+    }
+
+  .grund-aenderung-section.checkbox-pair label,
+  .col-label,
+  .col-content {
+        font-size: 9pt!important;
+    }
+
+    input[type="text"],
+    textarea {
+        font-size: 9pt!important;
+        padding: 2px!important;
+    }
+
+  .grund-aenderung-section.checkbox-row {
+        margin-bottom: 0!important;
+    }
+
+  .grund-aenderung-section.checkbox-pair {
+        margin-bottom: 0!important;
+    }
+
+    /* Zusatzinfos Section */
+  .zusatzinfos-section.row {
+        display: flex!important;
+        flex-wrap: nowrap!important;
+        align-items: center;
+        margin-bottom: 2px!important;
+    }
+
+  .zusatzinfos-section.col-full {
+        width: 45%!important;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 0!important;
+    }
+
+  .zusatzinfos-section.col-full input[type="text"] {
+        width: auto!important;
+        max-width: 60%;
+    }
+
+  .zusatzinfos-section.col-full.text-right {
+        justify-content: space-between;
+    }
+
+    .zusatzinfos-section label {
+        display: flex;
+        align-items: center; 
+        white-space: nowrap;
+    }
+
+  .zusatzinfos-section input[type="text"] {
+        margin-left: 5px; 
+    }
+
+
+
+
+
+  .print-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin: 10px;
+    }
+
+  .print-header h2 {
+        font-size: 16pt;
+
+    }
+
+  .print-date {
+        font-size: 10pt;
+    }
+}

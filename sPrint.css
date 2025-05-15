@@ -1,0 +1,330 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color-background);
+    color: white;
+}
+
+
+:root {
+    --color-background: #e7ebee;
+    --color-header: #ffffff;
+    --color-line: white;
+    --color-text: #111;
+    --color-border: #d7d7d7;
+    --color-buttonTop: #0e3e93;
+    --color-buttonDown: #0c3375;
+    --color-buttonTopHover: #2257b3;
+    --color-buttonDownHover: #17438f;
+
+
+}
+
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: var(--color-header);
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.print-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 10px;
+}
+
+.print-header h2 {
+    font-size: 16pt;
+
+}
+
+.print-date {
+    font-size: 10pt;
+}
+
+#Ueberschrift {
+    color: var(--color-text);
+    font-size: 2em;
+    margin: 0;
+    text-shadow: 3px 3px 6px #87CEFA;
+}
+
+/* Betrifft Section */
+.betrifft-section {
+    margin-bottom: 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.betrifft-section .row {
+    justify-content: center;
+    /* Zentriert "betrifft" horizontal */
+}
+
+.betrifft-section .col-full {
+    text-align: center;
+    /* Zentriert "betrifft" innerhalb der Spalte */
+}
+
+.betrifft-section .rubrikueberschrift {
+    margin-bottom: 10px;
+    /* Abstand unter "betrifft" */
+}
+
+.betrifft-section .col-content {
+    width: auto;
+    /* Breite passt sich dem Inhalt an */
+    margin: 5px;
+    /* Kleiner Abstand zwischen den Checkboxen */
+}
+
+/* Grund-Aenderung Section */
+.grund-aenderung-section {
+    margin-bottom: 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.grund-aenderung-section .checkbox-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 0;
+}
+
+.grund-aenderung-section .checkbox-pair {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    flex-basis: 30%;
+}
+
+.grund-aenderung-section .checkbox-pair label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 10pt;
+}
+
+.grund-aenderung-section .checkbox-pair input[type="checkbox"] {
+    margin-right: 5px;
+    width: auto;
+}
+
+/* Programm-Bestueckung Section */
+.programm-bestueckung-section {
+    margin-bottom: 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Schablone-Bestueckung Section */
+.schablone-bestueckung-section {
+    margin-bottom: 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Pruefung Section */
+.pruefung-section {
+    margin-bottom: 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Aenderungsnachweis Section */
+.aenderungsnachweis-section {
+    margin-bottom: 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.aenderungsnachweis-section .col-content {
+    width: auto;
+}
+
+.aenderungsnachweis-section .row .col-content textarea {
+    text-align: center;
+}
+
+/* Zusatzinfos Section */
+.zusatzinfos-section {
+    margin-bottom: 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+
+
+/* Allgemeine Stile */
+.table-section {
+    border: 1px solid white;
+}
+
+.row {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.col-content {
+    padding: 5px;
+    width: 16.66%;
+}
+
+.col-label {
+    width: 17%;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.col-full {
+    width: 100%;
+    padding: 5px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.rubrikueberschrift {
+    font-weight: bold;
+    color: var(--color-text);
+}
+
+.full-width-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+}
+
+input[type="text"],
+textarea {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+    width: auto;
+}
+
+
+
+.umbruch_vor {
+    page-break-before: always;
+}
+
+.button {
+    background-image: linear-gradient(var(--color-buttonTop), var(--color-buttonDown));
+    border: 1px solid #0077CC;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    direction: ltr;
+    font-family: "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    line-height: 1.47059;
+    min-width: 30px;
+    overflow: visible;
+    height: 34px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
+        0px 8px 13px rgba(0, 0, 0, 0.1),
+        0px 18px 23px rgba(0, 0, 0, 0.1);
+}
+
+.button:disabled {
+    cursor: default;
+    opacity: .3;
+}
+
+.button:hover {
+    background-image: linear-gradient(var(--color-buttonTopHover), var(--color-buttonDownHover));
+    border-color: #1482D0;
+    text-decoration: none;
+}
+
+.button:active {
+    background-image: linear-gradient(var(--color-buttonTopHover), var(--color-buttonDownHover));
+    border-color: #006DBC;
+    outline: none;
+}
+
+.button:focus {
+    box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
+    outline: none;
+}
+
+/* Stuecklistenaenderungen Section */
+.stuecklistenaenderungen-section {
+    margin-bottom: 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.stuecklistenaenderungen-section .full-width-textarea {
+    min-height: 600px;
+    overflow-y: auto;
+    text-align: left;
+    padding: 10px;
+    font-family: monospace;
+}
+
+.stuecklistenaenderungen-section .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.stuecklistenaenderungen-section .col-half {
+    width: 48%;
+}
+
+.stuecklistenaenderungen-section .text-left {
+    text-align: left;
+}
+
+.stuecklistenaenderungen-section .text-right {
+    text-align: right;
+}
+
+.stuecklistenaenderungen-section .full-width-textarea {
+    min-height: 600px;
+    overflow-y: auto;
+    text-align: left;
+    padding: 10px;
+    font-family: monospace;
+    width: 100%;
+    box-sizing: border-box;
+}
+
