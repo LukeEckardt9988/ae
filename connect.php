@@ -1,9 +1,14 @@
 <?php
 // Datenbank-Zugangsdaten
-$servername = "localhost";
+$servername = "localhost"; 
 $username = "root";
 $password = "";
 $dbname = "pv_aend_sl";
+/*
+$servername = "ubserv01";
+$username = "pv_aend_sl";
+$password = "YS@RxNY25z9Cm5L.";
+$dbname = "pv_aend_sl"; */
 
 // Datenbankverbindung herstellen
 try {

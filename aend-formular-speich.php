@@ -83,7 +83,7 @@ $stmt = $conn->prepare("INSERT INTO data (user_id, chpv, chpf, chpp, chpg, chver
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 $stmt->bind_param(
-	"iiiiiiiiiiiissssssssssssssssssssssssssssssssssss",
+	"iiiiiiiiiissssssssssssssssssssssssssssssssssssss",
 	$user_id,
 	$chpv,
 	$chpf,
@@ -179,8 +179,8 @@ $conn->close(); ?>
 
 <style>
 	body {
-		background-color: #212c4d;
-		color: white;
+		background-color: white;
+		color: black;
 		text-align: center;
 		padding: 40px;
 	}

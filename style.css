@@ -1,120 +1,234 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    background-color: var(--color-background);
-    color: var(--color-text);
-    transition: opacity 0.5s ease-in-out;
-}
-
 :root {
-    --color-background: #23224a;
-    --color-header: #23224a;
-    --color-line: white;
-    --color-text: #c8c8c8;
-    --color-textButton: #f8f8f8;
-    --color-border: #d7d7d7;
-    --color-buttonTop: #616096;
-    --color-buttonDown: #3f325f;
-    --color-buttonTopHover: #8eb6e7;
-    --color-buttonDownHover: #c9a1cd;
+    /* === DARK MODE (STANDARD) === */
+    /* Basisfarben (inspiriert von custom_styles.css und Ihrer Präferenz) */
+    --color-background: #121212;        /* Haupt-Hintergrund (z.B. body) */
+    --color-surface: #1e1e1e;           /* Hintergrund für Elemente wie Karten, Container, Formulare */
+    --color-text: #e0e0e0;              /* Heller Haupttext */
+    --color-text-muted: #a0a0a0;        /* Gedämpfter Text für sekundäre Infos */
+    --color-border: #353535;            /* Etwas hellere Border als #333 für besseren Kontrast auf #1e1e1e */
+    --color-line: #444444;              /* Linien in Tabellen etc. */
 
+    /* Akzentfarben */
+    --color-accent: #bb86fc;            /* Lila Akzent (aus custom_styles.css) */
+    --color-accent-secondary: #03dac6;  /* Türkis Akzent (aus custom_styles.css) */
 
+    /* Buttons */
+    --color-textButton: #ffffff;
+    --color-buttonTop: #3a3a3a;
+    --color-buttonDown: #303030;
+    --color-buttonTopHover: #4a4a4a;
+    --color-buttonDownHover: #404040;
+    --color-buttonBorder: var(--color-border);
+
+    /* Tabellenfarben Dark Mode */
+    --table-header-bg: #2a2a2a;         /* Dunkler Tabellenkopf */
+    --table-header-text: var(--color-text);
+    --table-row-even-bg: #2c2c2c;         /* Etwas hellere gerade Zeilen */
+    --table-row-odd-bg: var(--color-surface); /* Ungerade Zeilen wie Surface */
+    --table-border-color: var(--color-line);
+    --table-text-color: var(--color-text);
+    --table-link-color: var(--color-accent-secondary);
+    --table-link-hover-color: var(--color-accent);
+
+    /* Farben für Status-Icons, dynamische Tabelleninfos etc. (Beispiele) */
+    --icon-color-default: var(--color-accent-secondary);
+    --icon-color-hover: var(--color-accent);
+    --status-ok-text: #81c784;        /* Helles Grün für Text */
+    --status-ok-bg: rgba(102, 187, 106, 0.15);
+    --status-error-text: #e57373;     /* Helles Rot für Text */
+    --status-error-bg: rgba(239, 83, 80, 0.15);
+    --status-warning-text: #ffd54f;   /* Helles Gelb/Orange für Text */
+    --status-warning-bg: rgba(255, 213, 79, 0.15);
+    --status-info-text: #64b5f6;      /* Helles Blau für Text */
+    --status-info-bg: rgba(100, 181, 246, 0.15);
 }
+
+.light-mode {
+    /* === LIGHT MODE === */
+    /* Basisfarben (Ihr bestehendes helles Design) */
+    --color-background: #ffffff;
+    --color-surface: #f8f9fa;
+    --color-header: #f1f1f1;        /* Für Tabellenköpfe im Light Mode etc. */
+    --color-text: #000000;
+    --color-text-muted: #555555;
+    --color-border: #d7d7d7;
+    --color-line: #e0e0e0;
+
+    /* Akzentfarben */
+    --color-accent: #007bff;
+    --color-accent-secondary: #0056b3;
+
+    /* Buttons im Light Mode (Ihre bestehenden) */
+    --color-textButton: #f8f8f8; /* Textfarbe für dunkle Buttons im LightMode */
+    --color-buttonTop: #a8a8a8;
+    --color-buttonDown: #a0a0a0;
+    --color-buttonTopHover: #4e4e4e;
+    --color-buttonDownHover: #555555;
+    --color-buttonBorder: var(--color-border);
+
+    /* Tabellenfarben Light Mode */
+    --table-header-bg: #f1f1f1;
+    --table-header-text: #000000;
+    --table-row-even-bg: #e7e7e7;    /* Helle gerade Zeilen */
+    --table-row-odd-bg: #ffffff;     /* Weiße ungerade Zeilen */
+    --table-border-color: #d7d7d7;
+    --table-text-color: #000000;
+    --table-link-color: #007bff;
+    --table-link-hover-color: #0056b3;
+
+    /* Farben für Status-Icons, dynamische Tabelleninfos etc. (Beispiele) */
+    --icon-color-default: #007bff;
+    --status-ok-text: #155724;        /* Dunkles Grün für Text */
+    --status-ok-bg: #d4edda;          /* Heller grüner Hintergrund */
+    --status-error-text: #721c24;     /* Dunkles Rot für Text */
+    --status-error-bg: #f8d7da;       /* Heller roter Hintergrund */
+    --status-warning-text: #856404;   /* Dunkles Gelb/Orange für Text */
+    --status-warning-bg: #fff3cd;     /* Heller gelber Hintergrund */
+    --status-info-text: #0c5460;      /* Dunkles Blau für Text */
+    --status-info-bg: #d1ecf1;        /* Heller blauer Hintergrund */
+}
+
+/* BODY Styling (Ihr bestehendes, mit Hintergrundbild und Farben) */
+body {
+    background-image: url('./bilder/header.jpg');
+    background-color: var(--color-background);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--color-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
 
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    margin: 0;
-    background-color: var(--color-background);
+    background-color: var(--color-surface); /* Wichtig: Ändern auf --color-surface */
     color: var(--color-text);
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px; /* Schatten ggf. anpassen für Light Mode */
 }
 
-.header {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1em;
-    color: var(--color-text);
-    text-align: center;
-}
-
-
-
-.navigation {
+/* Header-Styling */
+header {
+    background-color: #000000f2; /* Bleibt dunkel oder Sie machen es themenabhängig */
+    color: #fff; /* Text im Header bleibt weiß */
+    padding: 15px 30px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+header img {
+    height: 60px;
+    width: auto;
+    margin-right: 20px;
+}
+
+header h1 {
     margin: 0;
-    margin-bottom: 20px;
-    margin-top: 0;
+    font-size: 1.8em;
+    font-weight: 300;
 }
 
-.nav-item {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    font-size: 1.1em;
-
-}
-
-.nav-item a {
-    background-image: linear-gradient(var(--color-buttonTop), var(--color-buttonDown));
-    border: 0;
-    border-radius: 4px;
-    box-shadow: rgba(0, 0, 0, .3) 0 5px 15px;
-    box-sizing: border-box;
-    color: var(--color-textButton);
-    cursor: pointer;
-    font-family: Montserrat, sans-serif;
-    font-size: .9em;
-    margin: 5px;
-    margin-left: 0;
-    margin-bottom: 20px;
-    padding: 5px 10px;
-    text-align: center;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    text-decoration: none;
-
-}
-
-
-.nav-item a:hover {
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: linear-gradient(var(--color-buttonTopHover), var(--color-buttonDownHover));
-    color: var(--color-textButton);
-    text-decoration: none;
-
-}
-
-.user-info {
+header nav {
     display: flex;
+    align-items: center;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin-left: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 0.95em;
+}
+
+header nav a:hover,
+header nav a.active {
+    background-color: #555;
+}
+
+header nav a div {
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+}
+
+header nav a i {
+    /* Font Awesome Icons */
+    font-size: 1.1em;
+    /* Größe der Icons anpassen */
+    line-height: 1;
+    /* Verhindert zusätzlichen Abstand durch Line-Height des Icons */
+}
+
+
+
+/* 4. HTML5 <footer>-Element (wird sticky und beinhaltet user-info-content) */
+footer {
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+    bottom: 0;
+    background-color: #0a0a0af2;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+/* Styling für den Inhalt des Footers */
+.user-info-content {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    width: 100vb;
-    padding: 10px;
-    background-color: var(--color-header);
-    border-radius: 10px;
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    z-index: 100;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-
 }
 
-#user-img {
-    margin: 0;
-    padding: 0;
-
+.user-info-content .info-item {
+    margin: 5px 15px;
+    /* Abstand zwischen den Info-Items */
+    font-size: 0.9em;
 }
 
-.info-item {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.1em;
+.user-info-content #user-img img {
+    max-width: 35px;
+    /* Etwas kleiner für den Footer */
+    max-height: 35px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    vertical-align: middle;
+    margin-left: 10px;
+    /* Abstand zu den linken Items */
+}
+
+.user-info-content #Uhr {
+    font-weight: normal;
+    /* Normale Schriftstärke, außer du willst es fett */
+    /* margin: 0 auto; /* Kann helfen, die Uhr zu zentrieren, wenn sie allein in einer Zeile ist */
+}
+
+/* Copyright-Text im Footer */
+footer p.copyright {
+    text-align: center;
+    font-size: 0.85em;
+    padding-top: 10px;
+    margin-top: 10px;
+    opacity: 0.9;
 }
 
 .main-content {
@@ -153,9 +267,7 @@ body {
     width: 50%;
     height: 50%;
     margin: 100px auto;
-    background-color: var(--color-header);
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 
 }
 
@@ -247,9 +359,7 @@ body {
     width: 50%;
     height: 50%;
     margin: 20px auto;
-    background-color: var(--color-header);
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .creation-header {
@@ -293,7 +403,7 @@ body {
     margin: auto;
     background-color: var(--color-header);
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px;
 }
 
 .search-header {
@@ -332,9 +442,7 @@ body {
     width: 50%;
     height: 50%;
     margin: 100px auto;
-    background-color: var(--color-header);
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .creation-header {
@@ -392,6 +500,135 @@ body {
 
 
 
+
+.dataTables_wrapper .dataTables_paginate {
+    margin-top: 20px;
+}
+/* --- Tabellen-Styling --- */
+.tabellen-container {
+    width: 80%; /* Behalten Sie Ihre Breiten- und Layout-Styles bei */
+    margin: 50px auto;
+    overflow-x: auto;
+    background-color: var(--color-surface); /* Angepasst */
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* Ggf. anpassen für Light Mode */
+    flex-grow: 1;
+}
+
+.tabellen-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Wichtig: Diese Selektoren sollten Ihre Tabellen abdecken */
+.tabellen-container th,
+.tabellen-container table.dataTable thead th, /* Für DataTables */
+#example th /* Ihre spezifische ID, falls noch verwendet */ {
+    background-color: var(--table-header-bg);
+    color: var(--table-header-text);
+    padding: 10px;
+    border: 1px solid var(--table-border-color);
+    text-align: center;
+}
+
+.tabellen-container td,
+.tabellen-container table.dataTable tbody td,
+#example td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid var(--table-border-color);
+    color: var(--table-text-color); /* Stellt sicher, dass Tabellentext die richtige Farbe hat */
+}
+
+/* Zebrastreifen */
+.tabellen-container table.dataTable tbody tr:nth-child(even),
+.tabellen-container table:not(.dataTable) tbody tr:nth-child(even) { /* Auch für Tabellen ohne DataTables */
+    background-color: var(--table-row-even-bg);
+}
+.tabellen-container table.dataTable tbody tr:nth-child(odd),
+.tabellen-container table:not(.dataTable) tbody tr:nth-child(odd) {
+    background-color: var(--table-row-odd-bg);
+}
+
+/* DataTables UI Elemente */
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_length label,
+.dataTables_wrapper .dataTables_filter label {
+    color: var(--color-text);
+}
+
+
+
+/* Block für "Suchen:" (dataTables_filter) */
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 15px; /* Abstand nach unten zur Tabelle */
+    margin-left: 0px;   /* Ihr bestehender Abstand zum "Length"-Menü */
+    margin-top: 5px;     /* Optional: Abstand nach oben, falls das "Length"-Menü links daneben ist */
+    /* Ihre bestehenden display und vertical-align Styles können bleiben */
+}
+
+/* Das eigentliche Such-Eingabefeld */
+.dataTables_wrapper .dataTables_filter input[type="search"] {
+    background-color: var(--color-surface); /* Oder --color-background, je nach Design */
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 8px 10px;    /* Etwas mehr Padding für bessere Optik */
+    margin-left: 8px;     /* Abstand zwischen dem Label "Suchen:" und dem Feld */
+    width: 250px;         /* Breite anpassen nach Bedarf */
+    font-size: 1em;       /* Ihre bestehende Schriftgröße */
+    /*transition: border-color 0.2s ease, box-shadow 0.2s ease; /* Sanfter Übergang für Fokus */
+}
+
+.dataTables_wrapper .dataTables_filter input[type="search"]:focus {
+    border-color: var(--color-accent);
+    /* box-shadow: 0 0 0 0.2rem rgba(var(--color-accent-rgb), 0.25);  Sie müssten --color-accent-rgb definieren, wenn Sie diesen Effekt wollen */
+}
+
+
+/* Block für "Anzeigen X Einträge" (dataTables_length) */
+.dataTables_wrapper .dataTables_length {
+    margin-bottom: 15px; /* Etwas mehr Abstand nach unten zum Suchfeld oder zur Tabelle */
+    margin-top: 5px;     /* Optional: Abstand nach oben */
+    /* Ihre bestehenden display und vertical-align Styles können bleiben */
+}
+
+.dataTables_wrapper .dataTables_filter input[type="search"],
+.dataTables_wrapper .dataTables_length select {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 5px 8px; /* Etwas Padding für bessere Optik */
+}
+.dataTables_wrapper .dataTables_length select option { /* Für die Optionen im Dropdown */
+    background-color: var(--color-surface);
+    color: var(--color-text);
+}
+
+
+.dataTables_wrapper .dataTables_paginate .fg-button {
+    background-image: linear-gradient(var(--color-buttonTop), var(--color-buttonDown));
+    border: 1px solid var(--color-buttonBorder); /* Eigene Variable für Button-Ränder */
+    color: var(--color-textButton);
+    /* Behalten Sie Ihre anderen Styles (Radius, Schatten, etc.) bei */
+    /* ... Ihre bestehenden .dataTables_wrapper .dataTables_paginate .fg-button Styles ... */
+}
+.dataTables_wrapper .dataTables_paginate .fg-button:hover {
+    background-image: linear-gradient(var(--color-buttonTopHover), var(--color-buttonDownHover));
+}
+.dataTables_wrapper .dataTables_paginate .ui-state-disabled { /* DataTables deaktivierte Buttons */
+    opacity: 0.6;
+    background-image: linear-gradient(var(--color-buttonTop), var(--color-buttonDown));
+    cursor: default;
+}
+
+
+
+
+/* In Ihrer Haupt-CSS-Datei (z.B. ae/style.css) */
+
 #example {
     width: 100%;
     margin: 0 auto;
@@ -414,47 +651,16 @@ body {
     background-color: var(--color-header);
     color: var(--color-text);
     padding: 5px;
-    margin: 10px;
+    margin-left: 0px;
+    margin-right: 5px;
+    border-radius: 5px;
+
 }
 
 .dataTables_wrapper .dataTables_paginate {
     margin-top: 20px;
 }
 
-.tabellen-container {
-    width: 80%;
-    margin: 20px auto;
-    overflow-x: auto;
-    background-color: var(--color-header);
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 100px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.tabellen-container table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.tabellen-container th,
-.tabellen-container td {
-    padding: 8px;
-    text-align: left;
-    border: 1px solid var(--color-line);
-}
-
-.tabellen-container thead tr {
-    background-color: rgba(240, 240, 240, 0.12);
-}
-
-.tabellen-container tbody tr:nth-child(even) {
-    background-color: rgba(248, 248, 248, 0.12);
-}
-
-.tabellen-container table.dataTable thead th {
-    color: var(--color-text);
-}
 
 
 img {
@@ -465,64 +671,81 @@ img {
 }
 
 
-.dataTables_wrapper .dataTables_info {
-    margin-top: 10px;
-    margin-left: 0 auto;
-}
 
 
 
-
-.dataTables_wrapper .dataTables_length,
-.dataTables_wrapper .dataTables_filter {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.dataTables_wrapper .dataTables_length {
-    margin-bottom: 10px;
-}
-
-.dataTables_wrapper .dataTables_filter {
-    margin-bottom: 10px;
-    margin-left: 20px;
-}
-
-.dataTables_wrapper .dataTables_filter input {
-    width: 200px;
-    font-size: 1em;
-}
-
-
-
-
-.dataTables_wrapper .dataTables_paginate .fg-button {
-    background-image: linear-gradient(var(--color-buttonTop), var(--color-buttonDown));
-    border: 0;
-    border-radius: 4px;
-    box-shadow: rgba(0, 0, 0, .3) 0 5px 15px;
-    box-sizing: border-box;
+/* Formular-Elemente (Beispielhaft) */
+.search-form, .login-form, .user-creation-form, .creation-form {
+    background-color: var(--color-surface);
     color: var(--color-text);
-    cursor: pointer;
-    font-family: Montserrat, sans-serif;
-    font-size: .9em;
-    margin: 5px;
-    margin-left: 0;
-    margin-bottom: 20px;
-    padding: 5px 10px;
-    text-align: center;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
+    /* ... Ihre bestehenden Layout-Styles für Formulare ... */
+}
+.search-form-s { /* Dieses hatte --color-header, jetzt --color-surface */
+    background-color: var(--color-surface);
+    /* ... */
+}
+.login-header, .creation-header, .search-header h2 {
+    color: var(--color-text); /* Oder --color-accent für Titel */
+}
+.input, input[type="text"], input[type="password"], input[type="email"], select, textarea { /* Generelle Input-Styles */
+    background-color: var(--color-background); /* Hintergrund der Eingabefelder */
+    color: var(--color-text);                 /* Textfarbe in Eingabefeldern */
+    border: 1px solid var(--color-border);
+    border-radius: 4px; /* Konsistenter Radius */
+    padding: 8px 10px;
+}
+.input:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 0.2rem rgba(var(--color-accent), 0.25); /* Ähnlich wie Bootstrap-Fokus */
 }
 
-.dataTables_wrapper .dataTables_paginate .fg-button:hover {
+
+/* Buttons (Ihre bestehende .button Klasse) */
+.button {
     background-image: linear-gradient(var(--color-buttonTop), var(--color-buttonDown));
+    border: 1px solid var(--color-buttonBorder); /* Angepasst */
+    color: var(--color-textButton);
+    /* Behalten Sie Ihre anderen Button-Styles (Font, Padding, Schatten etc.) bei */
+    /* ... Ihre bestehenden .button Styles ... */
+}
+.button:hover {
+    background-image: linear-gradient(var(--color-buttonTopHover), var(--color-buttonDownHover));
+    /* ... */
+}
+
+/* Aktions-Icons und Status-Icons (Beispiele, wie sie die Variablen nutzen könnten) */
+.action-icon {
+    font-size: 1.6em;
+    margin: 0 4px;
+    color: var(--icon-color-default); /* Variable verwenden */
+    text-decoration: none;
+}
+.action-icon:hover {
+    color: var(--icon-color-hover); /* Variable verwenden */
+}
+
+/* Beispiele für Status-basierte Textfarben/Hintergründe in Tabellen (dynamische Infos) */
+td.status-ok {
+    color: var(--status-ok-text);
+    /* background-color: var(--status-ok-bg); Optionaler leichter Hintergrund */
+}
+td.status-error {
+    color: var(--status-error-text);
+    /* background-color: var(--status-error-bg); */
+}
+td.status-warning {
+    color: var(--status-warning-text);
+    /* background-color: var(--status-warning-bg); */
+}
+td.status-info {
+    color: var(--status-info-text);
+    /* background-color: var(--status-info-bg); */
+}
+
+/* Sidebar Links */
+.sidebar-item a {
     color: var(--color-text);
 }
-
-
-
 
 
 
@@ -545,10 +768,104 @@ img {
     clip-path: inset(0 3ch 0 0);
     animation: l4 1s steps(4) infinite;
 
-  }
-  .loader:before {
-    content:"Loading..."
-  }
-  @keyframes l4 {to{clip-path: inset(0 -1ch 0 0)}}
+}
 
+.loader:before {
+    content: "Loading..."
+}
+
+@keyframes l4 {
+    to {
+        clip-path: inset(0 -1ch 0 0)
+    }
+}
+
+.fas {
+    font-size: 1.6em;
+
+}
+
+/* Beispiel für die View/Log Icons */
+td .fas.fa-eye,
+td .fas.fa-history {
+    font-size: 1.6em;
+    /* Größe anpassen */
+    margin: 0 5px;
+    /* Abstand hinzufügen */
+    color: #337ab7;
+    /* Standardfarbe für Links, falls gewünscht */
+}
+
+td .fas.fa-eye:hover,
+td .fas.fa-history:hover {
+    color: #23527c;
+    /* Farbe beim Hovern */
+}
+
+/* Beispiel für Status-Icons, falls Sie keine Inline-Styles verwenden */
+.fa-times-circle {
+    color: red;
+}
+
+.fa-check-circle {
+    color: green;
+}
+
+.fa-exclamation-triangle {
+    color: orange;
+}
+
+.fa-exclamation-circle {
+    color: darkred;
+}
+
+
+
+
+
+
+
+
+
+/* Allgemeines Styling für Aktions-Icons in Tabellen */
+.action-icon {
+    font-size: 1.6em;
+    /* Etwas größere Icons */
+    margin: 0 4px;
+    /* Ein wenig Abstand zwischen den Icons */
+    color: #337ab7;
+    /* Standardfarbe (z.B. ein Blau) */
+    text-decoration: none;
+}
+
+.action-icon:hover {
+    color: #23527c;
+    /* Dunklere Farbe beim Hovern */
+}
+
+/* Spezifische Farben für Icons, falls gewünscht */
+.icon-green {
+    color: green;
+}
+
+.icon-green:hover {
+    color: darkgreen;
+}
+
+.icon-red {
+    color: red;
+}
+
+.icon-red:hover {
+    color: darkred;
+}
+
+.icon-blue {
+    /* Für Bearbeiten etc. falls nicht Standard */
+    color: #007bff;
+}
+
+.icon-blue:hover {
+    color: #0056b3;
+}
 

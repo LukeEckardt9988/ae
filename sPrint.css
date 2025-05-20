@@ -1,330 +1,401 @@
+/* sPrint.css - Überarbeitet für Dark/Light Mode Theming für edit.php und aend-formular.php */
+
+/* --------------------------------------------------------------------------
+   1. CSS-Variablen (Farbpaletten)
+   -------------------------------------------------------------------------- */
+:root {
+    /* === DARK MODE (STANDARD) === */
+    /* Basisfarben (inspiriert von custom_styles.css und Ihrer globalen style.css) */
+    --color-background: #121212;        /* Haupt-Hintergrund für den Body dieser Seiten */
+    --color-surface: #1e1e1e;           /* Hintergrund für Container, Formularelemente auf diesen Seiten */
+    --color-text: #e0e0e0;              /* Heller Haupttext */
+    --color-text-muted: #a0a0a0;        /* Gedämpfter Text */
+    --color-border: #353535;            /* Ränder */
+    --color-line: #444444;              /* Trennlinien */
+
+    /* Akzentfarben (können für wichtige Elemente verwendet werden) */
+    --color-accent: #bb86fc;
+    --color-accent-secondary: #03dac6;
+
+    /* Buttons auf diesen Seiten (spezifisch für .button Klasse in sPrint.css) */
+    --sprint-button-text: #ffffff;
+    --sprint-button-bg-top: #3a3a3a;
+    --sprint-button-bg-down: #303030;
+    --sprint-button-bg-top-hover: #4a4a4a;
+    --sprint-button-bg-down-hover: #404040;
+    --sprint-button-border: var(--color-border);
+    --sprint-button-focus-shadow: rgba(187, 134, 252, 0.5); /* Akzentfarbe mit Transparenz */
+
+    /* Farben für die form-table */
+    --sprint-formtable-header-bg: #2a2a2a;
+    --sprint-formtable-border: var(--color-line);
+}
+
+.light-mode {
+    /* === LIGHT MODE === */
+    /* Basisfarben (basierend auf Ihrem ursprünglichen sPrint.css :root) */
+    --color-background: #e7ebee;
+    --color-surface: #ffffff;
+    --color-text: #000000;
+    --color-text-muted: #555555;
+    --color-border: #a0a0a0;      /* Ihr --color-border war #000000, etwas aufgehellt */
+    --color-line: #cccccc;        /* Ihr --color-line war white, jetzt sichtbarer */
+
+    /* Akzentfarben */
+    --color-accent: #007bff;
+    --color-accent-secondary: #0056b3;
+
+    /* Buttons auf diesen Seiten (basierend auf Ihrem ursprünglichen sPrint.css :root) */
+    --sprint-button-text: #ffffff;
+    --sprint-button-bg-top: #0e3e93;
+    --sprint-button-bg-down: #0c3375;
+    --sprint-button-bg-top-hover: #2257b3;
+    --sprint-button-bg-down-hover: #17438f;
+    --sprint-button-border: #0b2d60; /* Passender Rand für blaue Buttons */
+    --sprint-button-focus-shadow: rgba(131, 192, 253, 0.5); /* Ihr Fokus-Schatten */
+
+    /* Farben für die form-table */
+    --sprint-formtable-header-bg: #f1f1f1; /* Heller Header für Light Mode */
+    --sprint-formtable-border: #cccccc;    /* Hellerer Rand */
+}
+
+
+/* --------------------------------------------------------------------------
+   2. Globale Styles für edit.php & aend-formular.php (aus sPrint.css)
+   -------------------------------------------------------------------------- */
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--color-background);
-    color: white;
+    color: var(--color-text); /* GEÄNDERT von black */
+    margin: 0; /* Standard-Reset für Body */
+    padding: 20px; /* Globaler Abstand für den Inhalt dieser Seiten */
+    min-height: calc(100vh - 40px); /* Volle Höhe abzüglich Padding */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-
-:root {
-    --color-background: #e7ebee;
-    --color-header: #ffffff;
-    --color-line: white;
-    --color-text: #111;
-    --color-border: #d7d7d7;
-    --color-buttonTop: #0e3e93;
-    --color-buttonDown: #0c3375;
-    --color-buttonTopHover: #2257b3;
-    --color-buttonDownHover: #17438f;
-
-
+/* Optional: Globale Links auf diesen Seiten, falls nicht spezifischer gestylt */
+a {
+    color: var(--color-accent-secondary);
+}
+a:hover {
+    color: var(--color-accent);
 }
 
-
-.container {
+/* --------------------------------------------------------------------------
+   3. Bestehende Styles aus sPrint.css (angepasst an Variablen)
+   -------------------------------------------------------------------------- */
+.container { /* Hauptcontainer für den Inhalt auf diesen Seiten */
     width: 90%;
     max-width: 1200px;
-    margin: 20px auto;
-    background-color: var(--color-header);
+    margin: 0 auto;
+    background-color: var(--color-surface); /* GEÄNDERT von --color-header (aus sPrint :root) */
     padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px; /* Schatten anpassen für Light/Dark */
+    border-radius: 5px;
 }
+.light-mode .container { /* Spezifischer Schatten für Light Mode */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
+}
+
 
 .print-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    margin: 10px;
+    margin: 0 0 20px 0; /* Angepasster Margin */
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .print-header h2 {
-    font-size: 16pt;
-
-}
-
-.print-date {
-    font-size: 10pt;
-}
-
-#Ueberschrift {
-    color: var(--color-text);
-    font-size: 2em;
+    font-size: 1.5em; /* Angepasst von 16pt */
+    color: var(--color-text); /* Oder var(--color-accent) */
     margin: 0;
-    text-shadow: 3px 3px 6px #87CEFA;
+}
+.print-header .info-block {
+    font-size: 0.9em;
+    color: var(--color-text-muted);
 }
 
-/* Betrifft Section */
-.betrifft-section {
-    margin-bottom: 20px;
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 10px;
+.form-section {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--color-line);
 }
-
-.betrifft-section .row {
-    justify-content: center;
-    /* Zentriert "betrifft" horizontal */
-}
-
-.betrifft-section .col-full {
-    text-align: center;
-    /* Zentriert "betrifft" innerhalb der Spalte */
-}
-
-.betrifft-section .rubrikueberschrift {
-    margin-bottom: 10px;
-    /* Abstand unter "betrifft" */
-}
-
-.betrifft-section .col-content {
-    width: auto;
-    /* Breite passt sich dem Inhalt an */
-    margin: 5px;
-    /* Kleiner Abstand zwischen den Checkboxen */
-}
-
-/* Grund-Aenderung Section */
-.grund-aenderung-section {
-    margin-bottom: 20px;
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.grund-aenderung-section .checkbox-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.form-section:last-child {
+    border-bottom: none;
     margin-bottom: 0;
 }
-
-.grund-aenderung-section .checkbox-pair {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-    white-space: nowrap;
-    flex-basis: 30%;
+.form-section h3 {
+    font-size: 1.2em;
+    color: var(--color-accent);
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 8px;
 }
 
-.grund-aenderung-section .checkbox-pair label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    font-size: 10pt;
-}
-
-.grund-aenderung-section .checkbox-pair input[type="checkbox"] {
-    margin-right: 5px;
-    width: auto;
-}
-
-/* Programm-Bestueckung Section */
-.programm-bestueckung-section {
-    margin-bottom: 20px;
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-/* Schablone-Bestueckung Section */
-.schablone-bestueckung-section {
-    margin-bottom: 20px;
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-/* Pruefung Section */
-.pruefung-section {
-    margin-bottom: 20px;
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-/* Aenderungsnachweis Section */
-.aenderungsnachweis-section {
-    margin-bottom: 20px;
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.aenderungsnachweis-section .col-content {
-    width: auto;
-}
-
-.aenderungsnachweis-section .row .col-content textarea {
-    text-align: center;
-}
-
-/* Zusatzinfos Section */
-.zusatzinfos-section {
-    margin-bottom: 20px;
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-
-
-/* Allgemeine Stile */
-.table-section {
-    border: 1px solid white;
-}
-
-.row {
-    display: flex;
-    margin-bottom: 5px;
-}
-
-.col-content {
-    padding: 5px;
-    width: 16.66%;
-}
-
-.col-label {
-    width: 17%;
-    padding: 5px;
-    font-weight: bold;
-}
-
-.col-full {
+.form-table {
     width: 100%;
-    padding: 5px;
+    border-collapse: collapse;
+    margin-bottom: 15px;
 }
-
-.text-center {
-    text-align: center;
-}
-
-.text-right {
-    text-align: right;
-}
-
-.rubrikueberschrift {
-    font-weight: bold;
+.form-table th,
+.form-table td {
+    border: 1px solid var(--sprint-formtable-border); /* Spezifische Variable für diese Tabellen */
+    padding: 8px 10px;
     color: var(--color-text);
+    text-align: left;
+    vertical-align: top;
+}
+.form-table th {
+    background-color: var(--sprint-formtable-header-bg); /* Spezifische Variable */
+    font-weight: bold;
+    width: 200px;
 }
 
-.full-width-textarea {
-    width: 100%;
-    box-sizing: border-box;
-    resize: none;
-}
-
+/* Styles für Input-Felder, Textareas, Selects auf diesen Seiten */
 input[type="text"],
-textarea {
-    border: 1px solid #ccc;
-    padding: 5px;
-    border-radius: 3px;
+input[type="date"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
     width: 100%;
-    box-sizing: border-box;
-}
-
-input[type="checkbox"] {
-    width: auto;
-}
-
-
-
-.umbruch_vor {
-    page-break-before: always;
-}
-
-.button {
-    background-image: linear-gradient(var(--color-buttonTop), var(--color-buttonDown));
-    border: 1px solid #0077CC;
+    padding: 8px 10px;
     border-radius: 4px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-background); /* Hintergrund der Inputs, kann auch --color-surface sein */
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 1em;
     box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    direction: ltr;
-    font-family: "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 17px;
-    font-weight: 400;
-    letter-spacing: -.022em;
-    line-height: 1.47059;
-    min-width: 30px;
-    overflow: visible;
-    height: 34px;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
-        0px 8px 13px rgba(0, 0, 0, 0.1),
-        0px 18px 23px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-accent);
+    outline: none;
+    /* box-shadow: 0 0 0 0.2rem rgba(var(--color-accent-rgb), 0.25); (Optionaler Fokus-Schatten - --color-accent-rgb müsste definiert werden) */
+}
+textarea {
+    min-height: 80px;
+    resize: vertical;
 }
 
+/* Button-Styles spezifisch für sPrint.css */
+.button {
+    display: inline-block;
+    background-image: linear-gradient(var(--sprint-button-bg-top), var(--sprint-button-bg-down));
+    border: 1px solid var(--sprint-button-border);
+    border-radius: 4px;
+    color: var(--sprint-button-text) !important;
+    cursor: pointer;
+    padding: 8px 15px;
+    font-family: inherit; /* Oder Ihre spezifische Button-Schriftart */
+    font-size: 1em; /* Ihre Schriftgröße für Buttons in sPrint.css */
+    font-weight: normal; /* Ihre Schriftstärke */
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: background-image 0.2s ease, border-color 0.2s ease;
+}
+.button:hover {
+    background-image: linear-gradient(var(--sprint-button-bg-top-hover), var(--sprint-button-bg-down-hover));
+    border-color: var(--color-accent); /* Generische Akzentfarbe für Rand bei Hover */
+    color: var(--sprint-button-text) !important;
+}
 .button:disabled {
     cursor: default;
-    opacity: .3;
+    opacity: .55; /* Etwas sichtbarer als .3 */
+    background-image: linear-gradient(var(--sprint-button-bg-top), var(--sprint-button-bg-down));
+    border-color: var(--sprint-button-border);
 }
-
-.button:hover {
-    background-image: linear-gradient(var(--color-buttonTopHover), var(--color-buttonDownHover));
-    border-color: #1482D0;
-    text-decoration: none;
-}
-
 .button:active {
-    background-image: linear-gradient(var(--color-buttonTopHover), var(--color-buttonDownHover));
-    border-color: #006DBC;
-    outline: none;
+    background-image: linear-gradient(var(--sprint-button-bg-down-hover), var(--sprint-button-bg-top-hover));
+    border-color: var(--color-accent-secondary); /* Andere Akzentfarbe für Klick */
 }
-
 .button:focus {
-    box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
     outline: none;
+    border-color: var(--color-accent); /* Generische Akzentfarbe für Fokus-Rand */
+    box-shadow: 0 0 0 3px var(--sprint-button-focus-shadow); /* Spezifischer Fokus-Schatten */
 }
 
-/* Stuecklistenaenderungen Section */
+
+/* Stuecklistenaenderungen Section in aend-formular.php */
 .stuecklistenaenderungen-section {
     margin-bottom: 20px;
-    border: 1px solid white;
+    border: 1px solid var(--color-border); /* Verwendet Variable */
     border-radius: 5px;
-    padding: 10px;
+    padding: 15px;
+    background-color: var(--color-surface); /* Einheitlicher Hintergrund */
 }
-
+.stuecklistenaenderungen-section .rubrikueberschrift { /* Ihre Klasse für den Titel */
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--color-text); /* Oder var(--color-accent) */
+    margin-bottom: 10px;
+    text-align: center;
+}
 .stuecklistenaenderungen-section .full-width-textarea {
-    min-height: 600px;
-    overflow-y: auto;
-    text-align: left;
-    padding: 10px;
+    width: 100%;
+    min-height: 200px; /* Angepasst von 600px */
     font-family: monospace;
+    padding: 10px;
+    /* Erbt Farben, Border etc. von der globalen textarea Regel */
+}
+#zeichen-erlaubt { /* Zähler für Textarea */
+    font-size: 0.9em;
+    color: var(--color-text-muted);
+    margin-top: 5px;
+    display: block; /* Stellt sicher, dass es Platz einnimmt */
 }
 
-.stuecklistenaenderungen-section .row {
+/* Layout-Klassen aus sPrint.css */
+.row {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap;
+    margin-left: -10px;
+    margin-right: -10px;
     margin-bottom: 10px;
 }
-
-.stuecklistenaenderungen-section .col-half {
-    width: 48%;
-}
-
-.stuecklistenaenderungen-section .text-left {
-    text-align: left;
-}
-
-.stuecklistenaenderungen-section .text-right {
-    text-align: right;
-}
-
-.stuecklistenaenderungen-section .full-width-textarea {
-    min-height: 600px;
-    overflow-y: auto;
-    text-align: left;
-    padding: 10px;
-    font-family: monospace;
-    width: 100%;
+.col-full, .col-half {
+    padding-left: 10px;
+    padding-right: 10px;
     box-sizing: border-box;
+    margin-bottom: 10px; /* Abstand zwischen Spalten untereinander bei Umbruch */
+}
+.col-full { width: 100%; }
+.col-half { width: 50%; }
+
+@media (max-width: 768px) { /* Einfaches Beispiel für Responsive Verhalten der Spalten */
+    .col-half {
+        width: 100%;
+    }
 }
 
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+.umbruch_vor { page-break-before: always; } /* Für den Druck relevant */
+
+
+/* --------------------------------------------------------------------------
+   4. jQuery UI Komponenten Theming (für aend-formular.php Tabs)
+   -------------------------------------------------------------------------- */
+/* Dies setzt voraus, dass die jQuery UI Basis-CSS-Dateien (core, theme, tabs)
+   im HTML von aend-formular.php *vor* dieser sPrint.css geladen werden! */
+
+.ui-widget {
+    font-family: Arial, Helvetica, sans-serif; /* Erbt von Body oder spezifisch setzen */
+    font-size: 1em; /* Erbt von Body oder spezifisch setzen */
+}
+.ui-widget-content { /* Allgemeiner Container für JUI Widgets */
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+}
+.ui-widget-content a {
+    color: var(--color-accent-secondary); /* Linkfarbe innerhalb von JUI Widgets */
+}
+.ui-widget-header { /* Header von JUI Widgets (z.B. Dialogtitel, Akkordeon-Header) */
+    border: 1px solid var(--color-border);
+    background-color: var(--sprint-formtable-header-bg); /* Konsistent mit form-table Header */
+    color: var(--color-text); /* Textfarbe anpassen, wenn Header-BG dunkel/hell */
+    font-weight: bold;
+}
+/* Light Mode spezifische JUI Header Textfarbe, falls nötig */
+.light-mode .ui-widget-header {
+    color: var(--color-text); /* Stellt sicher, dass es schwarz auf hellgrau ist */
+}
+
+/* jQuery UI Tabs (spezifisch für aend-formular.php) */
+.ui-tabs {
+    padding: 0;
+    background: none; /* Kein eigener Hintergrund für den Tab-Container */
+    border: none;     /* Kein eigener Rahmen für den Tab-Container */
+    position: relative;
+}
+.ui-tabs .ui-tabs-nav { /* Die Leiste mit den Tab-Reitern */
+    margin: 0;
+    padding: 0.2em 0.2em 0;
+    background-color: transparent; /* Kein eigener Hintergrund für die Nav-Leiste */
+    border-bottom: 1px solid var(--color-border); /* Linie unter den Tabs */
+    border-radius: 4px 4px 0 0; /* Nur oben abrunden */
+}
+.ui-tabs .ui-tabs-nav li { /* Einzelner Tab-Reiter */
+    list-style: none;
+    float: left;
+    position: relative;
+    top: 0;
+    margin: 1px 0.2em 0 0; /* Etwas Abstand zwischen Reitern */
+    border-bottom-width: 0 !important; /* Wichtig für JUI Verhalten */
+    padding: 0;
+    white-space: nowrap;
+    border-radius: 4px 4px 0 0;
+    background-color: var(--color-surface); /* Standard-Hintergrund für Reiter */
+    border: 1px solid var(--color-border);
+    transition: background-color 0.2s ease;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor { /* Der Link (<a>) im Reiter */
+    float: left;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    color: var(--color-text-muted); /* Nicht-aktive Tabs gedämpfter */
+    outline: none;
+}
+
+/* Hover-Zustand für Tab-Reiter */
+.ui-tabs .ui-tabs-nav li:not(.ui-tabs-active):not(.ui-state-disabled):hover {
+    background-color: var(--sprint-button-bg-top); /* Leichter Hover-Effekt */
+    border-color: var(--color-border); /* Kann gleich bleiben oder Akzentfarbe nehmen */
+}
+.ui-tabs .ui-tabs-nav li:not(.ui-tabs-active):not(.ui-state-disabled):hover .ui-tabs-anchor {
+    color: var(--color-text); /* Textfarbe bei Hover */
+}
+
+/* Aktiver Tab-Reiter */
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    margin-bottom: -1px; /* Lässt den Reiter in den Panel hineinragen */
+    padding-bottom: 1px;
+    background-color: var(--color-background); /* Hintergrund des Panels, um verbunden auszusehen */
+    border-color: var(--color-border);
+    border-bottom-color: transparent !important; /* Wichtig für den "verbunden"-Effekt */
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+    cursor: default; /* Kein Hand-Cursor für aktiven Tab */
+    color: var(--color-accent); /* Akzentfarbe für den Text des aktiven Tabs */
+    font-weight: bold;
+}
+
+/* Deaktivierter Tab-Reiter */
+.ui-tabs .ui-tabs-nav li.ui-state-disabled,
+.ui-tabs .ui-tabs-nav li.ui-state-disabled:hover { /* Kein Hover-Effekt für deaktivierte Tabs */
+    background-color: var(--color-surface) !important; /* Hintergrund bleibt gleich */
+    border-color: var(--color-border) !important;
+    opacity: 0.5;
+}
+.ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor {
+    cursor: default;
+    color: var(--color-text-muted) !important;
+}
+
+/* Tab-Inhalts-Panel */
+.ui-tabs .ui-tabs-panel {
+    display: block;
+    border-width: 0; /* Rahmen wird vom .container oder body gehandhabt */
+    padding: 1.5em 1.4em; /* Innenabstand des Panels */
+    background-color: var(--color-background); /* Hintergrund des Panels */
+    /* border-top: 1px solid var(--color-border); (Nur wenn Panel sich optisch abheben soll) */
+}
+
+/* Wenn Sie DataTables auf edit.php verwenden und diese spezifisch hier stylen wollen
+   (und nicht aus einer globalen style.css), müssten die DataTables Paginierungs-Styles
+   und andere hierher kopiert und angepasst werden. Momentan habe ich nur sehr
+   minimale Paginierungs-Styles unten als Platzhalter gelassen. */

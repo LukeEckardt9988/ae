@@ -229,7 +229,7 @@ $session = session_id();
                 <div class="row">
                     <div class="col-label">Programm BS</div>
                     <div class="col-content text-center">
-                        <input type="text" size="10" readonly="readonly" maxlength="10" name="pbsapb" id="pbsapb" value="<?php echo $pbsapb; ?>" />
+                        <input type="text" size="10" readonly="readonly" maxlength="20" name="pbsapb" id="pbsapb" value="<?php echo $pbsapb; ?>" />
                     </div>
                     <div class="col-content text-center">
                         <input type="text" size="10" readonly="readonly" maxlength="10" name="pbsapl" id="pbsapl" value="<?php echo $pbsapl; ?>" />

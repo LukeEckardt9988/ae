@@ -10,6 +10,7 @@ $session = session_id();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aenderungsprotokoll</title>
   <link rel="stylesheet" href="sPrint.css">
+  
 
   <script language="JavaScript">
     function countLetters(textarea) {
@@ -415,14 +416,14 @@ $session = session_id();
           </div>
           <div class="col-full text-right">
             <label for="tbsachnr">Sach.-Nr.:
-              <input type="text" name="tbsachnr" id="tbsachnr" size="40" maxlength="40" readonly value="<?php echo $tbsachnr; ?>" />
+              <input type="text" name="tbsachnr" id="tbsachnr" size="40" maxlength="40" value="<?php echo $tbsachnr; ?>" />
             </label>
           </div>
         </div>
         <div class="row">
           <div class="col-full text-right">
             <label for="tbbez">Bezeich.:
-              <input type="text" name="tbbez" id="tbbez" size="40" maxlength="40" readonly value="<?php echo $tbbez; ?>" />
+              <input type="text" name="tbbez" id="tbbez" size="40" maxlength="40" value="<?php echo $tbbez; ?>" />
             </label>
           </div>
           <div class="col-full text-right">

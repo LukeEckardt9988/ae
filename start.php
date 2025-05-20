@@ -13,7 +13,8 @@ $session = session_id();
 	<script type="text/javascript" src="scripts/dhtml.js"></script>
 	<script type="text/javascript" src="media/js/jquery.js"></script>
 	<script type="text/javascript" src="media/js/jquery.dataTables.js"></script>
-	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#example').dataTable({
@@ -94,34 +95,110 @@ $session = session_id();
 	?>
 
 	<div class="container">
-		<div class="header">
-			<h1 class="Ueberschrift">EPSa Änderungsverwaltung</h1>
-		</div>
-		<div class="navigation">
-			<div class="nav-item"><a href="start.php">Startseite</a></div>
-			<div class="nav-item"><a href="login-eingabe.php">Login</a></div>
-			<div class="nav-item"><a href="logout.php">Logout</a></div>
-			<div class="nav-item"><a href="viewlist.php">Übersicht</a></div>
-			<div class="nav-item"><a href="erzeugen.php">Erzeugen</a></div>
-			<div class="nav-item"><a href="usercreate.php">Benutzer anlegen</a></div>
-		</div>
-	</div>
+		<header>
+			<img src="./bilder/headerLogo.png" alt="Firmenlogo">
+			<h1>Übersicht & Suche in den Stücklistenänderungen</h1>
+			<nav>
 
-	<div class="user-info">
-		<div class="info-item">
-			<strong>Angemeldet:</strong> <?php echo $host; ?>-<?php echo $ip; ?>
-		</div>
-		<div class="info-item">
-			<strong>Benutzer:</strong> <?php echo $ma_aktiv; ?>
-		</div>
-		<div class="info-item" id="Uhr">
-			&nbsp;
-		</div>
-		<div id="user-img">
-			<?php echo $stat_bild; ?>
-		</div>
+				<a href="start.php" aria-label="Startseite">
+					<div><i class="fas fa-home"></i></div>
+					Startseite
+				</a>
+				<a href="erzeugen.php" aria-label="Erzeugen">
+					<div><i class="fas fa-plus-square"></i></div>
+					Erzeugen
+				</a>
+				<a href="viewlist.php" aria-label="Übersicht">
+					<div><i class="fas fa-list-alt"></i></div>
+					Übersicht
+				</a>
 
+				<a href="usercreate.php" aria-label="Benutzer anlegen">
+					<div><i class="fas fa-user-plus"></i></div>
+					Benutzer anlegen
+				</a>
+
+				<a href="logout.php" aria-label="Logout   ">
+					<div><i class="fas fa-sign-out-alt"></i></div>
+					Logout
+				</a>
+				<a href="login-eingabe.php" aria-label="Login">
+					<div><i class="fas fa-sign-in-alt"></i></div> Login
+				</a>
+				<div id="user-img">
+					<?php echo isset($stat_bild) ? $stat_bild : ''; // Gibt $stat_bild aus, wenn es existiert 
+					?>
+				</div>
+				<button id="themeToggleBtn" title="Helles Design aktivieren" style="background:none; border:none; color: white; cursor:pointer; font-size: 1.5em; margin-left:15px;">
+					<i class="fas fa-sun"></i> </button>
+			</nav>
+		</header>
 	</div>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const themeToggleBtn = document.getElementById('themeToggleBtn');
+			const body = document.body; // oder document.documentElement für das <html> Tag
+
+			// Icons für den Button
+			const sunIconClass = 'fa-sun'; // Light Mode aktiv (zeigt Sonne zum Wechsel auf Dark) - eigentlich andersrum
+			const moonIconClass = 'fa-moon'; // Dark Mode aktiv (zeigt Mond zum Wechsel auf Light) - eigentlich andersrum
+
+			// Korrigierte Logik für Icon-Anzeige:
+			// Wenn aktuelles Theme Dark ist (Standard oder gewählt), zeige "Sonne"-Icon (um zu Light zu wechseln)
+			// Wenn aktuelles Theme Light ist, zeige "Mond"-Icon (um zu Dark zu wechseln)
+
+			const applyTheme = (theme) => {
+				const iconElement = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
+				if (theme === 'light') {
+					body.classList.add('light-mode');
+					if (iconElement) {
+						iconElement.classList.remove(sunIconClass);
+						iconElement.classList.add(moonIconClass);
+						themeToggleBtn.title = 'Dunkles Design aktivieren';
+					}
+				} else { // 'dark' or default
+					body.classList.remove('light-mode');
+					if (iconElement) {
+						iconElement.classList.remove(moonIconClass);
+						iconElement.classList.add(sunIconClass);
+						themeToggleBtn.title = 'Helles Design aktivieren';
+					}
+				}
+			};
+
+			// Beim Laden der Seite prüfen, ob ein Theme im localStorage gespeichert ist
+			let currentTheme = localStorage.getItem('theme');
+
+			if (!currentTheme) { // Wenn nichts gespeichert ist, Standard auf Dark
+				currentTheme = 'dark'; // Dark Mode ist der Standard
+				localStorage.setItem('theme', currentTheme); // Speichere Standard, falls nicht vorhanden
+			}
+			applyTheme(currentTheme);
+
+
+			// Event Listener für den Button
+			if (themeToggleBtn) {
+				themeToggleBtn.addEventListener('click', function() {
+					let newTheme;
+					if (body.classList.contains('light-mode')) {
+						newTheme = 'dark';
+					} else {
+						newTheme = 'light';
+					}
+					applyTheme(newTheme);
+					localStorage.setItem('theme', newTheme);
+
+					// Hier ggf. die Funktion für dynamische Tabellen-Infos aufrufen
+					if (typeof updateDynamicTableStyles === 'function') {
+						updateDynamicTableStyles(newTheme);
+					}
+				});
+			}
+		});
+	</script>
+
+
+
 
 	<?php
 	// Prüfen ob der angemeldete USER offene Änderungen hat -> anzeigen
@@ -177,17 +254,19 @@ $session = session_id();
 						$bez = $row["tbbez"];
 						$id = $row["id"];
 						$datum = date("d.m.Y H:i:s", strtotime($datum));
+						// NEU (mit Font Awesome Icons):
 						echo "<tr align='center'>
-						<td>
-						<a href=print.php?id=$id onClick='FensterOeffnen(this.href); return false'><img border=0 src=bilder/preview.png alt=Drucken title=Drucken></a>
-						<a href=edit.php?id=$id onClick='FensterOeffnen(this.href); return false'><img border=0 src=bilder/edit.png alt=Bearbeiten title=Bearbeiten></a>
-						<a href=freigabe_all.php?id=$id><img border=0 src=bilder/share.png alt='Freigabe PV' title='Freigabe PV'></a>
-						<a href=kill.php?id=$id><img border=0 src=bilder/kill.png alt=Entfernen title=Entfernen></a></td>
-						<td>" . htmlspecialchars($epsanr, ENT_QUOTES, 'UTF-8') . "</td>
-						<td>" . htmlspecialchars($sachnr, ENT_QUOTES, 'UTF-8') . "</td>
-						<td>" . htmlspecialchars($bez, ENT_QUOTES, 'UTF-8') . "</td>
-						<td>" . htmlspecialchars($datum, ENT_QUOTES, 'UTF-8') . "</td>
-					</tr>";
+    <td style='white-space: nowrap;'>
+        <a href='print.php?id=$id' onClick='FensterOeffnen(this.href); return false' title='Drucken / Ansicht'><i class='fas fa-print action-icon'></i></a>
+        <a href='edit.php?id=$id' onClick='FensterOeffnen(this.href); return false' title='Bearbeiten'><i class='fas fa-edit action-icon'></i></a>
+        <a href='freigabe_all.php?id=$id' title='Freigabe PV'><i class='fas fa-check-circle action-icon icon-green'></i></a>
+        <a href='kill.php?id=$id' title='Entfernen'><i class='fas fa-trash-alt action-icon icon-red'></i></a>
+    </td>
+    <td>" . htmlspecialchars($epsanr, ENT_QUOTES, 'UTF-8') . "</td>
+    <td>" . htmlspecialchars($sachnr, ENT_QUOTES, 'UTF-8') . "</td>
+    <td>" . htmlspecialchars($bez, ENT_QUOTES, 'UTF-8') . "</td>
+    <td>" . htmlspecialchars($datum, ENT_QUOTES, 'UTF-8') . "</td>
+</tr>";
 					}
 					echo "</table>";
 				}
@@ -235,14 +314,17 @@ $session = session_id();
 						$bez = $row["tbbez"];
 						$id = $row["id"];
 						$datum = date("d.m.Y H:i:s", strtotime($datum));
-						echo "
-                         <tr align='center'>
-        <td><a href=print.php?id=$id onClick='FensterOeffnen(this.href); return false'><img border=0 src=bilder/preview.png alt=Drucken title=Drucken></a></a><a href=freigabepf.php?id=$id><img border=0 src=bilder/share.png alt='Freigabe PF' title='Freigabe PF'></a></td>
-        <td>" . htmlspecialchars($epsanr, ENT_QUOTES, 'UTF-8') . "</td>
-        <td>" . htmlspecialchars($sachnr, ENT_QUOTES, 'UTF-8') . "</td>
-        <td>" . htmlspecialchars($bez, ENT_QUOTES, 'UTF-8') . "</td>
-        <td>" . htmlspecialchars($datum, ENT_QUOTES, 'UTF-8') . "</td>
-    </tr>";
+						// NEU (mit Font Awesome Icons):
+						echo "<tr align='center'>
+    <td style='white-space: nowrap;'>
+        <a href='print.php?id=$id' onClick='FensterOeffnen(this.href); return false' title='Drucken / Ansicht'><i class='fas fa-print action-icon'></i></a>
+        <a href='freigabepf.php?id=$id' title='Freigabe PF'><i class='fas fa-check-circle action-icon icon-green'></i></a>
+    </td>
+    <td>" . htmlspecialchars($epsanr, ENT_QUOTES, 'UTF-8') . "</td>
+    <td>" . htmlspecialchars($sachnr, ENT_QUOTES, 'UTF-8') . "</td>
+    <td>" . htmlspecialchars($bez, ENT_QUOTES, 'UTF-8') . "</td>
+    <td>" . htmlspecialchars($datum, ENT_QUOTES, 'UTF-8') . "</td>
+</tr>";
 					}
 					echo "</tbody></table>";
 				}
@@ -290,13 +372,17 @@ $session = session_id();
 						$bez = $row["tbbez"];
 						$id = $row["id"];
 						$datum = date("d.m.Y H:i:s", strtotime($datum));
+						// NEU (mit Font Awesome Icons):
 						echo "<tr align='center'>
-        <td><a href=print.php?id=$id onClick='FensterOeffnen(this.href); return false'><img border=0 src=bilder/preview.png alt=Drucken title=Drucken></a><a href=freigabe_all.php?id=$id><img border=0 src=bilder/share.png alt='Freigabe PP' title='Freigabe PP'></a></td>
-        <td>" . htmlspecialchars($epsanr, ENT_QUOTES, 'UTF-8') . "</td>
-        <td>" . htmlspecialchars($sachnr, ENT_QUOTES, 'UTF-8') . "</td>
-        <td>" . htmlspecialchars($bez, ENT_QUOTES, 'UTF-8') . "</td>
-        <td>" . htmlspecialchars($datum, ENT_QUOTES, 'UTF-8') . "</td>
-    </tr>";
+    <td style='white-space: nowrap;'>
+        <a href='print.php?id=$id' onClick='FensterOeffnen(this.href); return false' title='Drucken / Ansicht'><i class='fas fa-print action-icon'></i></a>
+        <a href='freigabe_all.php?id=$id' title='Freigabe PP'><i class='fas fa-check-circle action-icon icon-green'></i></a>
+    </td>
+    <td>" . htmlspecialchars($epsanr, ENT_QUOTES, 'UTF-8') . "</td>
+    <td>" . htmlspecialchars($sachnr, ENT_QUOTES, 'UTF-8') . "</td>
+    <td>" . htmlspecialchars($bez, ENT_QUOTES, 'UTF-8') . "</td>
+    <td>" . htmlspecialchars($datum, ENT_QUOTES, 'UTF-8') . "</td>
+</tr>";
 					}
 					echo "</tbody></table>";
 				}
@@ -338,12 +424,15 @@ $session = session_id();
 						$id = $row["id"];
 						$datum = date("d.m.Y H:i:s", strtotime($datum));
 						echo "<tr align='center'>
-						<td><a href=print.php?id=$id onClick='FensterOeffnen(this.href); return false'><img border=0 src=bilder/preview.png alt=Drucken title=Drucken></a><a href=freigabe_all.php?id=$id><img border=0 src=bilder/share.png alt='Freigabe PG' title='Freigabe PG'></a></td>
-						<td>" . htmlspecialchars($epsanr, ENT_QUOTES, 'UTF-8') . "</td>
-						<td>" . htmlspecialchars($sachnr, ENT_QUOTES, 'UTF-8') . "</td>
-						<td>" . htmlspecialchars($bez, ENT_QUOTES, 'UTF-8') . "</td>
-						<td>" . htmlspecialchars($datum, ENT_QUOTES, 'UTF-8') . "</td>
-					</tr>";
+    <td style='white-space: nowrap;'>
+        <a href='print.php?id=$id' onClick='FensterOeffnen(this.href); return false' title='Drucken / Ansicht'><i class='fas fa-print action-icon'></i></a>
+        <a href='freigabe_all.php?id=$id' title='Freigabe PG'><i class='fas fa-check-circle action-icon icon-green'></i></a>
+    </td>
+    <td>" . htmlspecialchars($epsanr, ENT_QUOTES, 'UTF-8') . "</td>
+    <td>" . htmlspecialchars($sachnr, ENT_QUOTES, 'UTF-8') . "</td>
+    <td>" . htmlspecialchars($bez, ENT_QUOTES, 'UTF-8') . "</td>
+    <td>" . htmlspecialchars($datum, ENT_QUOTES, 'UTF-8') . "</td>
+</tr>";
 					}
 					echo "</table>";
 				}
@@ -353,3 +442,25 @@ $session = session_id();
 	} // Ende isset(username)
 	echo "</div>";
 	?>
+
+	<footer>
+		<div class="user-info-content">
+			<div class="info-item">
+				<strong>Angemeldet:</strong> <?php echo isset($host) ? htmlspecialchars($host) : 'N/A'; ?>-<?php echo isset($ip) ? htmlspecialchars($ip) : 'N/A'; ?>
+			</div>
+			<div class="info-item">
+				<strong>Benutzer:</strong> <?php echo isset($ma_aktiv) ? htmlspecialchars($ma_aktiv) : 'N/A'; ?>
+			</div>
+			<div class="info-item" id="Uhr">
+				<?php echo isset($uhrzeit) ? $uhrzeit : '&nbsp;'; ?>
+			</div>
+
+
+			<p class="copyright"> &copy; <?php echo date('Y'); ?> EPSa
+			</p>
+		</div>
+	</footer>
+
+</body>
+
+</html>

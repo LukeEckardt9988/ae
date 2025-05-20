@@ -46,7 +46,9 @@ if (isset($_SESSION["username"])) {
   <link href="style.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="scripts/dhtml.js"></script>
   <script type="text/javascript" src="scripts/lightbox.js"></script>
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
   <script type="text/javascript">
     function ZeitAnzeigen() {
       const wochentagname = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
@@ -77,64 +79,94 @@ if (isset($_SESSION["username"])) {
 
 
   <div class="container">
-    <div class="header">
-      <h1 class="Ueberschrift">EPSa Änderungsverwaltung</h1>
-    </div>
-    <div class="navigation">
-      <div class="nav-item"><a href="start.php">Startseite</a></div>
-      <div class="nav-item"><a href="login-eingabe.php">Login</a></div>
-      <div class="nav-item"><a href="logout.php">Logout</a></div>
-      <div class="nav-item"><a href="viewlist.php">Übersicht</a></div>
-      <div class="nav-item"><a href="erzeugen.php">Erzeugen</a></div>
-      <div class="nav-item"><a href="usercreate.php">Benutzer anlegen</a></div>
-    </div>
-  </div>
+    <header>
+      <img src="./bilder/headerLogo.png" alt="Firmenlogo">
+      <h1>Übersicht & Suche in den Stücklistenänderungen</h1>
+      <nav>
 
+        <a href="start.php" aria-label="Startseite">
+          <div><i class="fas fa-home"></i></div>
+          Startseite
+        </a>
+        <a href="erzeugen.php" aria-label="Erzeugen">
+          <div><i class="fas fa-plus-square"></i></div>
+          Erzeugen
+        </a>
+        <a href="viewlist.php" aria-label="Übersicht">
+          <div><i class="fas fa-list-alt"></i></div>
+          Übersicht
+        </a>
 
-  <div class="user-info">
-    <div class="info-item">
-      <strong>angemeldet:</strong> <?php echo $host; ?>-<?php echo $ip; ?>
-    </div>
-    <div class="info-item">
-      <strong>Benutzer:</strong> <?php echo $ma_aktiv; ?>
-    </div>
-    <div class="info-item" id="Uhr">
-      &nbsp;
-    </div>
-    <div id="user-img">
-      <?php echo $stat_bild; ?>
-    </div>
-  </div>
+        <a href="usercreate.php" aria-label="Benutzer anlegen">
+          <div><i class="fas fa-user-plus"></i></div>
+          Benutzer anlegen
+        </a>
 
-
-  <form action="epsanr_eks.php" method="post" name="form" target="bearbeitungsfenster">
-    <div class="creation-form">
-      <div class="creation-header">
-        <h2>Änderung erzeugen</h2>
-      </div>
-      <div class="creation-body">
-        <div class="form-group">
-          <label for="tbepsanr">Bitte EPSa-Nummer eingeben</label>
-          <input class="input" name="tbepsanr" type="text" maxlength="50" size="24" />
+        <a href="logout.php" aria-label="Logout   ">
+          <div><i class="fas fa-sign-out-alt"></i></div>
+          Logout
+        </a>
+        <a href="login-eingabe.php" aria-label="Login">
+          <div><i class="fas fa-sign-in-alt"></i></div> Login
+        </a>
+        <div id="user-img">
+          <?php echo isset($stat_bild) ? $stat_bild : ''; // Gibt $stat_bild aus, wenn es existiert 
+          ?>
         </div>
-        <div class="form-group">
-          <input class="button" name="submit" type="submit" value="Speichern"  onclick="FensterOeffnen('epsanr_eks.php', 'bearbeitungsfenster'); /*location.href='start.php';*/" /> 
-         </div>
+      </nav>
+    </header>
+  </div>
+
+
+
+
+  <div class="tabellen-container">
+    <form action="epsanr_eks.php" method="post" name="form" target="bearbeitungsfenster">
+      <div class="creation-form">
+        <div class="creation-header">
+          <h2>Änderung erzeugen</h2>
+        </div>
+        <div class="creation-body">
+          <div class="form-group">
+            <label for="tbepsanr">Bitte EPSa-Nummer eingeben</label>
+            <input class="input" name="tbepsanr" type="text" maxlength="50" size="24" />
+          </div>
+          <div class="form-group">
+            <input class="button" name="submit" type="submit" value="Speichern" onclick="FensterOeffnen('epsanr_eks.php', 'bearbeitungsfenster'); /*location.href='start.php';*/" />
+          </div>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 
 
   <script>
-  // Event Listener für Nachrichten vom neuen Fenster
-  window.addEventListener('message', function(event) {
-    if (event.data === 'speichernErfolgreich') {
-      location.href = 'start.php';
-    }
-  });
-</script>
+    // Event Listener für Nachrichten vom neuen Fenster
+    window.addEventListener('message', function(event) {
+      if (event.data === 'speichernErfolgreich') {
+        location.href = 'start.php';
+      }
+    });
+  </script>
 
 
+  <footer>
+    <div class="user-info-content">
+      <div class="info-item">
+        <strong>Angemeldet:</strong> <?php echo isset($host) ? htmlspecialchars($host) : 'N/A'; ?>-<?php echo isset($ip) ? htmlspecialchars($ip) : 'N/A'; ?>
+      </div>
+      <div class="info-item">
+        <strong>Benutzer:</strong> <?php echo isset($ma_aktiv) ? htmlspecialchars($ma_aktiv) : 'N/A'; ?>
+      </div>
+      <div class="info-item" id="Uhr">
+        <?php echo isset($uhrzeit) ? $uhrzeit : '&nbsp;'; ?>
+      </div>
+
+
+      <p class="copyright"> &copy; <?php echo date('Y'); ?> EPSa
+      </p>
+    </div>
+  </footer>
 
 </body>
 

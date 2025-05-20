@@ -220,8 +220,8 @@ mysqli_close($conn); ?>
 
 <style>
 	body {
-	background-color: #212c4d;
-	color: white;
+	background-color: white;
+	color: black;
 	text-align: center;
 	padding: 40px;
 	}

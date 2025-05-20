@@ -1,0 +1,569 @@
+/* Angepasstes CSS für Ihr AE-Projekt basierend auf dem Wunsch-Design */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Moderne Schriftart, ähnlich dem Wunsch-CSS */
+    margin: 0;
+    background-color: var(--color-bg); /* WUNSCH-DESIGN Variable */
+    color: var(--color-text);          /* WUNSCH-DESIGN Variable */
+    transition: opacity 0.5s ease-in-out;
+    display: flex; /* Aus Wunsch-CSS übernommen für Sticky Footer */
+    flex-direction: column; /* Aus Wunsch-CSS übernommen */
+    min-height: 100vh; /* Aus Wunsch-CSS übernommen */
+    line-height: 1.6; /* Aus Wunsch-CSS übernommen */
+}
+
+:root {
+    /* Farbvariablen aus dem WUNSCH-DESIGN */
+    --color-primary: #4a90e2;
+    --color-primary-dark: #3575c1;
+    --color-danger: #d9534f;
+    --color-danger-dark: #bd2130; /* Hinzugefügt für Konsistenz */
+    --color-success: #5cb85c;
+    --color-success-dark: #4a9d4a; /* Hinzugefügt für Konsistenz */
+    --color-warning: #ffc107;    /* Hinzugefügt für Konsistenz */
+    --color-warning-dark: #e0a800; /* Hinzugefügt für Konsistenz */
+    --color-info: #17a2b8;       /* Hinzugefügt für Konsistenz */
+    --color-info-dark: #138496;    /* Hinzugefügt für Konsistenz */
+    --color-bg: #22272e;
+    --color-text: #e0e0e0;
+    --color-text-light: #999;
+    --color-border: #555;
+    --color-border-light: #444;
+    --color-bg-light: #333943;
+    --color-white: #f8f8f8;
+    --color-error-bg: #f2dede; /* Bleibt für Flash-Nachrichten, ggf. anpassen */
+    --color-success-bg: #dff0d8; /* Bleibt für Flash-Nachrichten, ggf. anpassen */
+    --color-error-border: #a94442; /* Bleibt für Flash-Nachrichten, ggf. anpassen */
+    --color-dark-text: #212529; /* Für helle Buttons wie Warning */
+
+    /* Alte Farbvariablen des lila/blauen Designs als Referenz (können später entfernt werden) */
+    /* --color-old-background: #23224a; */
+    /* --color-old-header: #23224a; */
+    /* --color-old-line: white; */
+    /* --color-old-text: #c8c8c8; */
+    /* --color-old-textButton: #f8f8f8; */
+    /* --color-old-border: #d7d7d7; */
+    /* --color-old-buttonTop: #616096; */
+    /* --color-old-buttonDown: #3f325f; */
+    /* --color-old-buttonTopHover: #8eb6e7; */
+    /* --color-old-buttonDownHover: #c9a1cd; */
+}
+
+a { /* Grundlegender Link-Stil aus Wunsch-CSS */
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container { /* Behält Struktur bei, aber mit neuen Farben */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; /* Entfernt, da body jetzt flex für sticky footer hat */
+    width: 100%;
+    margin: 0;
+    background-color: var(--color-bg); /* WUNSCH-DESIGN Farbe, redundant zu body, aber OK */
+    color: var(--color-text);         /* WUNSCH-DESIGN Farbe */
+    /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; /* Ggf. an Darkmode anpassen */
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px, rgba(0, 0, 0, 0.15) 0px 7px 13px -3px, rgba(0, 0, 0, 0.1) 0px -3px 0px inset; /* Leichterer Schatten */
+    flex-grow: 1; /* Für Sticky Footer Layout */
+}
+
+/* Header Anpassung an Wunsch-Design */
+.header { /* Dies scheint eher ein generischer Seiten-Header-Titel zu sein, nicht der Haupt-Header der Seite */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.5em; /* Etwas größer für Seitentitel */
+    color: var(--color-primary); /* Primärfarbe für Titel */
+    text-align: center;
+    padding: 15px 10px;
+    margin-bottom: 15px;
+    /* border-bottom: 1px solid var(--color-border-light); */ /* Optional: Trennlinie */
+}
+
+/* Haupt-Header der Seite (oft <header> Tag) */
+/* Wenn Ihr HTML ein <header>-Element für den oberen Bereich nutzt: */
+header.page-main-header { /* Beispiel für eine spezifischere Klasse oder direkt 'header' wenn eindeutig */
+    background-color: #000000; /* Fallback */
+    background-image: url('pfad/zu/ihrem/header.jpg'); /* BITTE PFAD ANPASSEN */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: var(--color-white);
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: #1a1a1a 0px 0px 15px; /* Dunklerer Schatten für Dark Mode */
+    border-bottom: 1px solid var(--color-border);
+}
+
+header.page-main-header .app-logo img { /* Für Ihr EPSA Logo */
+    height: 40px; /* Beispiel Höhe, bitte anpassen */
+    width: auto;
+    margin-right: 15px;
+}
+
+header.page-main-header .app-title a { /* Wenn der Titel ein Link ist */
+    color: var(--color-white);
+    font-size: 1.8em;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* Navigation - angepasst an Wunsch-Design (Navigationsleiste oben) */
+.navigation { /* Ihre .navigation Klasse für die Hauptnavigation */
+    display: flex;
+    justify-content: center; /* Oder flex-end, je nachdem wo die Hauptnavigation im Header ist */
+    align-items: center;
+    margin: 0;
+    /* margin-bottom: 20px; /* Entfernt, da Teil des page-main-header */
+    /* margin-top: 0; */
+}
+
+.nav-item { /* Ihre .nav-item Klasse */
+    margin: 0; /* Ggf. anpassen für Abstände zwischen Items */
+}
+
+.nav-item a { /* Ihre .nav-item a Links */
+    /* Styling vom Wunsch-CSS für Navigationslinks */
+    color: var(--color-white);
+    margin: 0 0.5em; /* Leichter Abstand zwischen den Links */
+    padding: 0.8em 1em; /* Padding für Klickfläche */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.2em; /* Kleiner Abstand Icon zu Text */
+    /* height: 60px; /* Höhe ggf. anpassen */
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.95em;
+
+    /* Entferne alte Gradient Buttons, da Wunsch-Design andere Nav-Optik hat */
+    /* background-image: linear-gradient(var(--color-buttonTop), var(--color-buttonDown)); */
+    /* box-shadow: rgba(0, 0, 0, .3) 0 5px 15px; */
+    /* border: 0; */
+}
+
+.nav-item a:hover {
+    background-color: var(--color-primary-dark); /* Oder eine andere Hover-Farbe aus Wunsch-CSS */
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+/* Ggf. Icons in der Navigation, falls vorhanden (FontAwesome o.ä.) */
+.nav-item a i {
+    font-size: 1.5em; /* Beispielgröße */
+    margin-bottom: 3px;
+    transition: transform 0.2s ease;
+}
+.nav-item a:hover i {
+    transform: scale(1.1);
+}
+
+
+.user-info { /* Feste Leiste am unteren Rand - behält Funktionalität, Farben angepasst */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* width: 100vb; /* Ist problematisch, 100% ist besser */
+    padding: 10px 15px;
+    background-color: var(--color-bg-light); /* WUNSCH-DESIGN Hintergrund */
+    border-top: 1px solid var(--color-border); /* WUNSCH-DESIGN Rahmen */
+    color: var(--color-text);
+    position: fixed;
+    bottom: 0;
+    left: 0; /* Stellt sicher, dass es links beginnt */
+    width: 100%;
+    z-index: 1000; /* Hoher z-index */
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2); /* Leichter Schatten nach oben */
+    box-sizing: border-box;
+}
+
+#user-img { /* Falls ein Bild hier verwendet wird */
+    margin: 0;
+    padding: 0;
+    max-height: 30px; /* Beispiel */
+    border-radius: 50%;
+}
+
+.info-item {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.9em;
+    color: var(--color-text-light);
+}
+.info-item strong {
+    color: var(--color-text);
+}
+
+
+.main-content { /* Hauptinhaltsbereich */
+    /* display: flex; /* Diese Flex-Eigenschaften sind oft Layout-spezifisch für eine Seite, nicht global */
+    /* justify-content: flex-end; */
+    /* align-items: center; */
+    /* margin-left: 100px; /* Dies verschiebt den Inhalt, evtl. nicht für alle Seiten gewollt */
+    padding: 1em; /* Standard-Padding für den Hauptinhalt aus Wunsch-CSS */
+    flex-grow: 1; /* Wichtig für Sticky Footer */
+}
+
+.sidebar { /* Falls Sie eine Sidebar haben */
+    width: 250px; /* Feste Breite oft besser für Sidebars */
+    padding: 15px;
+    background-color: var(--color-bg-light);
+    border-right: 1px solid var(--color-border);
+    color: var(--color-text);
+    /* Weitere Sidebar-Stile nach Bedarf */
+}
+
+.sidebar-item {
+    margin-bottom: 10px;
+}
+
+.sidebar-item a {
+    color: var(--color-text);
+    text-decoration: none;
+    display: block; /* Für bessere Klickbarkeit */
+    padding: 8px 10px;
+    border-radius: 4px;
+}
+.sidebar-item a:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+/* Formulare - Allgemein angepasst an Wunsch-Design */
+.login-form, .user-creation-form, .search-form-s, .creation-form {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; /* oft nicht nötig, wenn margin auto */
+    /* align-items: center; /* oft nicht nötig */
+    width: clamp(300px, 60%, 500px); /* Responsive Breite */
+    margin: 40px auto; /* Zentriert und mit Abstand */
+    padding: 25px;
+    background-color: var(--color-bg-light); /* WUNSCH-DESIGN */
+    border-radius: 8px; /* Weichere Ecken */
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Subtiler Schatten */
+}
+
+.login-header, .creation-header, .search-header { /* Gemeinsame Header für Formulare */
+    text-align: center;
+    color: var(--color-primary); /* Primärfarbe für Formular-Header */
+    font-size: 1.4em;
+    font-weight: bold;
+    padding-bottom: 15px; /* Abstand unter dem Header */
+    margin-bottom: 20px; /* Abstand zum Body */
+    border-bottom: 1px solid var(--color-border-light);
+}
+.login-header h2, .creation-header h2, .search-header h2 { /* Falls h2 im HTML verwendet wird */
+    color: var(--color-primary);
+    margin: 0;
+}
+
+
+.login-body, .creation-body, .search-body { /* Gemeinsamer Body für Formulare */
+    padding: 0; /* Padding ist jetzt im Hauptcontainer des Formulars */
+    width:100%;
+}
+
+.form-group { /* Aus Wunsch-CSS übernommen */
+    margin-bottom: 1.2rem; /* Etwas mehr Abstand */
+}
+
+.form-group label { /* Aus Wunsch-CSS übernommen */
+    display: block;
+    margin-bottom: .5rem;
+    font-weight: bold;
+    color: var(--color-text);
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="file"],
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group textarea,
+.form-group select,
+.input { /* Alte .input Klasse auch berücksichtigt */
+    width: 100%;
+    padding: 10px; /* Mehr Padding */
+    box-sizing: border-box;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background-color: #444952; /* Aus Wunsch-CSS Input-Hintergrund */
+    color: var(--color-text);
+    font-size: 0.95em;
+}
+.form-group input[type="text"]:focus,
+.form-group input[type="date"]:focus,
+.form-group input[type="file"]:focus,
+.form-group input[type="password"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus,
+.form-group select:focus,
+.input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, .25); /* Fokus-Indikator */
+    outline: none;
+}
+
+
+.form-group input[readonly],
+.form-group textarea[readonly] { /* Aus Wunsch-CSS */
+    background-color: #555A63; /* Aus Wunsch-CSS */
+    cursor: not-allowed;
+}
+
+.creation-footer, .search-footer { /* Gemeinsamer Footer für Formulare */
+    text-align: center;
+    padding-top: 15px;
+    margin-top: 10px;
+    border-top: 1px solid var(--color-border-light);
+}
+
+/* Buttons - Übernahme der .btn Klasse aus Wunsch-CSS */
+.button { /* Ihre alte .button Klasse wird jetzt wie .btn gestylt */
+    display: inline-block;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--color-white);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    padding: .5rem 1rem; /* Angepasst vom Wunsch-CSS .btn */
+    font-size: 1rem; /* Angepasst vom Wunsch-CSS .btn */
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    width: 100%; /* Behält Breite von alter .button Klasse bei */
+    margin-top: 10px; /* Behält Margin von alter .button Klasse bei */
+    margin-bottom: 10px; /* Behält Margin von alter .button Klasse bei */
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Moderne Schriftart */
+}
+
+.button:hover {
+    color: var(--color-white);
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    text-decoration: none; /* Sicherstellen, dass keine Unterstreichung bei Hover */
+}
+.button:focus {
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(74, 144, 226, .5); /* RGB Wert für --color-primary */
+}
+.button:active {
+    color: var(--color-white);
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    outline: none;
+}
+.button:disabled {
+    cursor: default;
+    opacity: .65; /* Standard Bootstrap Disabled Opacity */
+    background-color: var(--color-primary); /* Farbe beibehalten aber mit Opacity */
+    border-color: var(--color-primary);
+}
+
+/* .search-form (breites Suchformular oben auf Listenseiten) */
+.search-form {
+    width: 100%; /* Volle Breite im Container */
+    margin: 0 auto 25px auto; /* Oben/Unten Abstand, zentriert */
+    padding: 20px;
+    background-color: var(--color-bg-light);
+    border-radius: 5px;
+    border: 1px solid var(--color-border);
+    box-sizing: border-box;
+}
+.search-form .search-header { /* Überschrift innerhalb .search-form */
+    border-bottom: none;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+.search-form .search-header h2 { /* Falls h2 genutzt wird */
+    font-size: 1em; /* Passt sich der .search-header Größe an */
+    color: var(--color-text);
+}
+.search-form .form-group {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end; /* Buttons und Inputs auf einer Linie */
+}
+.search-form .form-group input[type="text"] {
+    flex-grow: 1; /* Nimmt verfügbaren Platz ein */
+}
+.search-form .button, .search-form .btn { /* Button im Suchformular */
+    width: auto; /* Breite automatisch an Inhalt anpassen */
+    padding: 10px 15px; /* Gleiches Padding wie Inputs */
+    height: calc(1.5em + 20px + 2px); /* Höhe an Inputs anpassen */
+}
+
+
+/* Tabellen (#example, .tabellen-container) - Anpassung an Wunsch-Design */
+#example, .tabellen-container table {
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse; /* Aus Wunsch-CSS */
+    background-color: var(--color-bg-light); /* WUNSCH-DESIGN */
+    color: var(--color-text);
+    border: 1px solid var(--color-border); /* Rahmen um die gesamte Tabelle */
+    border-radius: 5px; /* Abgerundete Ecken für den Container/Tabelle */
+    overflow: hidden; /* Stellt sicher, dass border-radius bei Zellen greift */
+}
+
+#example th, .tabellen-container th {
+    background-color: #3c424c; /* WUNSCH-DESIGN Tabellen-Header */
+    color: var(--color-white);
+    padding: 12px 10px; /* Mehr Padding */
+    border: 1px solid var(--color-border); /* Rahmen aus altem CSS, aber mit neuer Farbe */
+    text-align: left; /* Standard Textausrichtung */
+    font-weight: bold;
+}
+
+#example td, .tabellen-container td {
+    padding: 10px;
+    border: 1px solid var(--color-border); /* Rahmen aus altem CSS, aber mit neuer Farbe */
+    text-align: left;
+}
+
+/* Abwechselnde Zeilenfarben für bessere Lesbarkeit (aus Wunsch-CSS) */
+#example tbody tr:nth-child(even),
+.tabellen-container tbody tr:nth-child(even) {
+    background-color: #2c313a;
+}
+#example tbody tr:hover,
+.tabellen-container tbody tr:hover {
+    background-color: #4a5058; /* WUNSCH-DESIGN Hover */
+}
+
+
+.tabellen-container { /* Hauptcontainer für Tabellen, falls separat verwendet */
+    width: 100%; /* Responsive Breite */
+    max-width: 1200px; /* Maximale Breite für sehr große Bildschirme */
+    margin: 20px auto;
+    overflow-x: auto; /* Wichtig für schmale Bildschirme */
+    background-color: transparent; /* Hintergrund kommt von der Tabelle selbst */
+    border-radius: 0; /* Keine doppelten Radien */
+    padding: 0;
+    /* margin-bottom: 100px; /* Reduziert, da Footer jetzt sticky ist */
+    margin-bottom: 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Leichter Schatten für den Container */
+}
+
+/* DataTables spezifische Anpassungen (Beibehaltung der alten Struktur, Farben angepasst) */
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    background-color: #444952; /* WUNSCH-DESIGN Input Hintergrund */
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    padding: 6px 8px;
+    border-radius: 4px;
+}
+.dataTables_wrapper .dataTables_length label,
+.dataTables_wrapper .dataTables_filter label,
+.dataTables_wrapper .dataTables_info {
+    color: var(--color-text-light) !important;
+    font-size: 0.9em;
+}
+
+.dataTables_paginate .fg-button { /* Alte Buttons für Pagination */
+    background-image: linear-gradient(var(--color-primary), var(--color-primary-dark)); /* WUNSCH-DESIGN Button Farben */
+    border: 1px solid var(--color-primary-dark);
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, .15) 0 3px 8px;
+    color: var(--color-white); /* WUNSCH-DESIGN Textfarbe */
+    padding: 6px 10px;
+    margin: 2px; /* Kleinere Margin */
+    font-size: .85em;
+}
+
+.dataTables_paginate .fg-button:hover {
+    background-image: linear-gradient(var(--color-primary-dark), var(--color-primary));
+    color: var(--color-white);
+    border-color: var(--color-primary);
+}
+.dataTables_paginate .ui-state-disabled { /* Deaktivierte Paging Buttons */
+    opacity: 0.5;
+    cursor: default;
+     background-image: linear-gradient(#555, #333);
+     border-color: #444;
+}
+
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 15px;
+}
+.dataTables_wrapper .dataTables_filter {
+    text-align: right; /* Filter rechts oft üblich */
+}
+
+/* Generische img Tags */
+img {
+    /* width: 30px; /* Dies ist sehr spezifisch, evtl. entfernen oder klassenbasiert machen */
+    /* height: auto; */
+    /* padding-left: 10px; */ /* Auch spezifisch */
+    /* padding-right: 10px; */
+    max-width: 100%; /* Grundlegendes responsives Verhalten für Bilder */
+    height: auto;
+    vertical-align: middle; /* Verhindert Leerraum unter Bildern */
+}
+
+
+#tabellen-container { /* Dieses Element war display:none, bleibt so falls nicht anders gewünscht */
+    display: none;
+}
+
+
+/* Ladebalken ( unverändert, passt evtl. gut zum Dark Mode ) */
+.loader {
+    width: fit-content;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 30px;
+    position: fixed; /* Fixed, damit es immer zentriert ist, auch beim Scrollen */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    clip-path: inset(0 3ch 0 0);
+    animation: l4 1s steps(4) infinite;
+    color: var(--color-primary); /* Farbe an Primärfarbe anpassen */
+    z-index: 9999; /* Sehr hoch, damit er über allem liegt */
+  }
+  .loader:before {
+    content:"Loading...";
+  }
+  @keyframes l4 {to{clip-path: inset(0 -1ch 0 0)}}
+
+/* Footer Anpassung (aus Wunsch-CSS inspiriert) */
+footer.page-main-footer { /* Für den Haupt-Footer der Seite */
+    background-color: var(--color-bg); /* Dunkler Hintergrund */
+    /* background-image: url('pfad/zu/ihrem/header.jpg'); /* WIEDERHOLUNG DES HEADERS? ODER ANDERES BILD? BITTE PFAD ANPASSEN */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom; /* Oder center, je nach Bild */
+    text-align: center;
+    padding: 1.5em 1em; /* Mehr Padding */
+    margin-top: auto; /* Wichtig für Sticky Footer */
+    color: var(--color-text-light); /* Hellgrauer Text für Footer */
+    border-top: 1px solid var(--color-border-light); /* Subtile Trennlinie */
+    font-size: 0.9em;
+}
+footer.page-main-footer p {
+    margin: 0;
+}
+footer.page-main-footer a {
+    color: var(--color-primary);
+}
+footer.page-main-footer a:hover {
+    color: var(--color-primary-dark);
+}

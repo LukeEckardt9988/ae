@@ -2,7 +2,7 @@
 session_start();
 ?>
 <?php
-include "connect.php";
+include "connect.php"; // Ensure $conn is defined as the mysqli connection object in connect.php
 $username = $_POST["username"];
 $passwort = md5($_POST["passlog"]);
 
@@ -10,11 +10,11 @@ $passwort = md5($_POST["passlog"]);
 
 
 
-$ergebnis = mysql_query("SELECT username, passwort, id, abt FROM adlogin WHERE username = '$username'");
+$ergebnis = mysqli_query($conn, "SELECT username, passwort, id, abt FROM adlogin WHERE username = '$username'");
 // $db_user= mysql_result($ergebnis, 0, "username") ;
 // $db_pass= mysql_result($ergebnis, 0, "passwort") ;
 
-$row = mysql_fetch_row($ergebnis);
+$row = mysqli_fetch_row($ergebnis);
 // echo "USER: ".$row[0]."<br>"; // 42
 // echo "PASS: ".$row[1]."<br>";; // Der Wert von email
 

@@ -127,7 +127,7 @@ $session = session_id();
         <div class="row">
           <div class="col-label">Programm BS</div>
           <div class="col-content text-center">
-            <input type="text" size="10" maxlength="10" name="pbsapb" id="pbsapb" />
+            <input type="text" size="10" maxlength="20" name="pbsapb" id="pbsapb" />
           </div>
           <div class="col-content text-center">
             <input type="text" size="10" maxlength="10" name="pbsapl" id="pbsapl" />

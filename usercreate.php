@@ -2,7 +2,7 @@
 session_start(); // Session am Anfang starten
 include "connect.php";
 $session = session_id();
-/*
+
 // Überprüfen, ob die Session-Variable gesetzt ist
 if (isset($_SESSION["username"])) {
   echo "NAME: " . $_SESSION["username"];
@@ -16,7 +16,7 @@ if (isset($_SESSION["username"])) {
   // Wenn der Benutzer nicht angemeldet ist, leite ihn zur Anmeldeseite weiter
   header("Location: login-eingabe.php");
   exit;
-}*/
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +26,9 @@ if (isset($_SESSION["username"])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link rel="stylesheet" href="style.css">
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
   <script type="text/javascript">
     function ZeitAnzeigen() {
       const wochentagname = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
@@ -77,21 +79,46 @@ if (isset($_SESSION["username"])) {
 
 
   <div class="container">
-    <div class="header">
-      <h1 class="Ueberschrift">EPSa Änderungsverwaltung</h1>
-    </div>
-    <div class="navigation">
-      <div class="nav-item"><a href="start.php">Startseite</a></div>
-      <div class="nav-item"><a href="login-eingabe.php">Login</a></div>
-      <div class="nav-item"><a href="logout.php">Logout</a></div>
-      <div class="nav-item"><a href="viewlist.php">Übersicht</a></div>
-      <div class="nav-item"><a href="erzeugen.php">Erzeugen</a></div>
-      <div class="nav-item"><a href="usercreate.php">Benutzer anlegen</a></div>
-    </div>
+    <header>
+      <img src="./bilder/headerLogo.png" alt="Firmenlogo">
+      <h1>Übersicht & Suche in den Stücklistenänderungen</h1>
+      <nav>
+
+        <a href="start.php" aria-label="Startseite">
+          <div><i class="fas fa-home"></i></div>
+          Startseite
+        </a>
+        <a href="erzeugen.php" aria-label="Erzeugen">
+          <div><i class="fas fa-plus-square"></i></div>
+          Erzeugen
+        </a>
+        <a href="viewlist.php" aria-label="Übersicht">
+          <div><i class="fas fa-list-alt"></i></div>
+          Übersicht
+        </a>
+
+        <a href="usercreate.php" aria-label="Benutzer anlegen">
+          <div><i class="fas fa-user-plus"></i></div>
+          Benutzer anlegen
+        </a>
+
+        <a href="logout.php" aria-label="Logout   ">
+          <div><i class="fas fa-sign-out-alt"></i></div>
+          Logout
+        </a>
+        <a href="login-eingabe.php" aria-label="Login">
+          <div><i class="fas fa-sign-in-alt"></i></div> Login
+        </a>
+        <div id="user-img">
+          <?php echo isset($stat_bild) ? $stat_bild : ''; // Gibt $stat_bild aus, wenn es existiert 
+          ?>
+        </div>
+      </nav>
+    </header>
   </div>
 
 
-
+  <div class="tabellen-container">
   <form action="eintragen.php" method="post">
     <div class="user-creation-form">
       <div class="creation-header">
@@ -128,25 +155,25 @@ if (isset($_SESSION["username"])) {
       </div>
     </div>
   </form>
+</div>
+
+  <footer>
+    <div class="user-info-content">
+      <div class="info-item">
+        <strong>Angemeldet:</strong> <?php echo isset($host) ? htmlspecialchars($host) : 'N/A'; ?>-<?php echo isset($ip) ? htmlspecialchars($ip) : 'N/A'; ?>
+      </div>
+      <div class="info-item">
+        <strong>Benutzer:</strong> <?php echo isset($ma_aktiv) ? htmlspecialchars($ma_aktiv) : 'N/A'; ?>
+      </div>
+      <div class="info-item" id="Uhr">
+        <?php echo isset($uhrzeit) ? $uhrzeit : '&nbsp;'; ?>
+      </div>
 
 
-
-  <div class="user-info">
-    <div class="info-item">
-      <strong>Angemeldet:</strong> <?php echo $host; ?>-<?php echo $ip; ?>
+      <p class="copyright"> &copy; <?php echo date('Y'); ?> EPSa
+      </p>
     </div>
-    <div class="info-item">
-      <strong>Benutzer:</strong> <?php echo $ma_aktiv; ?>
-    </div>
-    <div class="info-item" id="Uhr">
-      &nbsp;
-    </div>
-    <div id="user-img">
-      <?php echo $stat_bild; ?>
-    </div>
-
-  </div>
-
+  </footer>
 
 </body>
 

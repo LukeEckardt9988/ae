@@ -68,23 +68,7 @@ if (isset($_GET['id'])) {
 	}
 	?>
 
-	<div class="container">
-		<div class="header">
-			<h1 class="Ueberschrift">EPSa Änderungsverwaltung</h1>
-		</div>
-		<div class="navigation">
-			<div class="nav-item"><a href="start.php">Startseite</a></div>
-			<div class="nav-item"><a href="login-eingabe.php">Login</a></div>
-			<div class="nav-item"><a href="logout.php">Logout</a></div>
-			<div class="nav-item"><a href="viewlist.php">Übersicht</a></div>
-			<div class="nav-item"><a href="erzeugen.php">Erzeugen</a></div>
-			<div class="nav-item"><a href="usercreate.php">Benutzer anlegen</a></div>
-		</div>
-	</div>
 
-	<div class="user-info">
-
-	</div>
 
 
 	<?php
